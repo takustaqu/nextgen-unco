@@ -271,7 +271,7 @@ function executeCall(callerSessionId, toiletId, callback) {
   client.calls.create({
     to: "+818020314368",
     from: credentials.twilio.from,
-    url: 'http://api.airwn.co/twilio/' + callerSessionId + '/' + toiletId,
+    url: 'http://api.airwn.co/api/twilio/' + callerSessionId + '/' + toiletId,
     method: "GET",
     fallbackMethod: "GET",
     statusCallbackMethod: "GET",
