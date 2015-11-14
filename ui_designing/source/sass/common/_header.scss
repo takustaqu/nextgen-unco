@@ -1,682 +1,114 @@
 
-$globalNavFocusBg : #4d4d4d;
-$globalNavSubMenuBg : $globalNavFocusBg;
-$globalNavSubMenuBgSelected : #5d5d5d;
-$globalNavSubMenuHeight : 40px;
 
-body {
-	padding-top:$headerBarHeight + $globalNavHeight;
-	@media (max-width: #{$globalNavBreakpoint}){
-		padding-top:0;
-	}
-	&.glnav-transparent {
-		padding-top:$headerBarHeight;
-		@media (max-width: #{$globalNavBreakpoint}){
-			padding-top:0;
-		}
-	}
-	&.glnav-nofollow{
-		padding-top:0;	
-	}
-	
-	// &body:not(.glnav-nofollow){
-		
-	// 	&.glnav-transparent {
-	// 		padding-top:$headerBarHeight;
-	// 	}
-	// }
-}
-
-//グローバルナビゲーション最上部
+$headerInnerSize: $smartphoneHeaderSize;
 #header-bar {
-	display: block;
-	background-color: $colorHeaderBar ;
-	$height: $headerBarHeight;
-	height:$height;
 	
-	//サイトの概要表示
-	aside {
-		line-height: $height;
-		display: inline-block;
-		height: $height;
-	}
+	box-shadow:0 0 5px rgba(0,0,0,0.2);
+	background-color: $colorHeaderBar;
+	height:$headerInnerSize;
+	width:100%;
+	position: fixed;
+	top:0;
+    transition: top .5s cubic-bezier(0.9, -0.24, 0.04, 1.19) 0s;
+    z-index:1000;
 
-	//バーの中身のテキストリンク
-	a { color: $textLinkGray; }
-
-	h1 {
-		height:$height;
-		line-height:$height;
-		display: inline-block;
-		a {
-			display: inline-block;height:$height;
-			vertical-align:middle;
-			-webkit-tap-highlight-color:rgba(0,0,0,0);
-		}
-		img {width:140px;}
-		aside {
-			display: inline-block;
-			font-size:0.9rem;
-			margin-left:10px;
-		}
+	
+	.glnav-hide & {
+		top: $headerInnerSize * -1;
 	}
 	
-	@media (min-width: #{$globalNavBreakpoint+1px}){
-		
-		body:not(.glnav-nofollow) & {
-			width:100%;
-			position:fixed;
-			top:0;left:0;
-			z-index:550;
-		}
-		
-	}
-}
-
-//右上ナビゲーション
-#header-bar-nav {
-	font-size: 1.17rem;
-	float: right;
-	$height: $headerBarHeight;
-	
-	> ul {
-		@media (max-width: #{$globalNavBreakpoint}){
-			position: absolute;
-			right: 0;
-			top: 0px;
-		}
-		> li {
-			display: inline-block;
-			vertical-align: middle;
-			position: relative;
-			&.for-logged-in {display:none;}
-			.logged-in & {
-				&.for-logged-in {display:inline-block;}
-				&.for-logged-out {display:none;}
-			}
-			> a {
-				padding:0 10px;
-				line-height: $height;
-				display: block;
-				height: $height;
-				img {
-					vertical-align: middle;
-				}
-			}
-			//プルダウンメニュー
-			> ul {
-				$triangleSize : 5px;
-				$boxColor : #FFF;
-				$pulldownWidth : 160px;
-				
-				$articleFontSize:1.2rem;
-				$articleLineHeight:2.6rem;
-				$articleTextIndent:0.4rem;
-				
-				position: absolute;
-				background-color: $boxColor;
-				padding:4px;
-				box-sizing:border-box;
-				border-radius:2px;
-				top:42px;
-				left:50%;
-				
-				width:$pulldownWidth;
-				margin:0 $pulldownWidth*-0.5;
-				
-				box-shadow:0 2px 8px rgba(0,0,0,0.5);
-				z-index:1;
-				
-				display: none;
-				&:before {
-					content:"";
-					display:block;
-					border:$triangleSize solid $boxColor;
-					margin:0 $triangleSize*-1;
-					left:50%;
-					position: absolute;
-					top:$triangleSize * -2;
-					border-color:transparent transparent $boxColor transparent;
-				}
-				li {
-					font-size:$articleFontSize;
-					line-height:$articleLineHeight;
-					text-indent:$articleTextIndent;
-					
-					border-bottom:1px solid #EEE;
-					&:last-child {
-						border:none;
-					}
-					color:#999;
-					
-					a {
-						color:#666;
-						display:block;
-						
-						&:hover{
-							text-decoration:none;
-							background-color: #EEE;
-						}
-					}
-				}
-			}
-			
-			&:hover {
-				ul {
-					display: block;
-				}
-			}
-		}
-	}
-
-	#header-bar-cart {
-		
-		$cartBadgeSize : 1.8rem;
-		
-		a {
-			display: block;
-			padding:0 20px;
-			border:1px solid darken( $colorLightGray,8%);
-			border-width:0 1px;
-			position: relative;
-			-webkit-tap-highlight-color:rgba(0,0,0,0);
-			
-			#badge-item-count {
-				position: absolute;
-				font-size:$cartBadgeSize*0.65;
-				top:8px;
-				height:0;
-				width:$cartBadgeSize;
-				height:$cartBadgeSize;
-				line-height:$cartBadgeSize;
-				text-align:center;
-				color:#fff;
-				background-color:$cartBadgeColor;
-				border-radius:50%;
-				font-family:$enSansFontFamily;
-				letter-spacing:0.1rem;
-				font-weight:bold;
-				z-index:1;
-				left:12px;
-				
-				.cart-isempty & {
-					display:none;
-				}
-			}
-			
-			&:after {
-				content:"";
-				display: block;
-				border-radius:50%;
-				background:rgba(0,0,0,0.2);
-				opacity:0;
-				transition: opacity 0.1s ease-in-out 0s;
-				width:$smartphoneHeaderIconTouchSize;
-				height:$smartphoneHeaderIconTouchSize;
-				position: absolute;
-				margin : $smartphoneHeaderIconTouchSize * -0.5;
-				left:50%;top:50%;
-			}
-			
-			&:active {
-				&:after {
-					opacity:1;
-				}
-			}
-			
-			img {
-				position: relative;
-				top:0px;
-				left:2px;
-				transition: top 0.2s ease-in-out 0s, left 0.2s ease-in-out 0s;
-				.cart-isempty & {
-					top:-2px;
-					left:0;
-				}
-			}
-		}
-	}
-}
-
-
-
-
-#header-global {
-
-	text-align: center;
-	z-index:1;
-	
-	h1 {
-		padding: 25px 0;
-	}
-
-	/*
-		bodyに.glnav-transparentが設定されている場合(homeなど)、
-		グローバルナビゲーションの透過を行う。その際のネガティブマージン。
-	*/
-	.glnav-transparent & {
-		@media (min-width: #{$globalNavBreakpoint + 1px}){
-			margin-bottom:$globalNavSubMenuHeight*-1; 
-			position: relative;
-		}
-	}
-	&:after {
-		content:"";
-		display: block;
-		clear:both;
-	}
-	
-	@media (min-width: #{$globalNavBreakpoint+1px}){
-		body:not(.glnav-nofollow) & {
-			z-index:500;
-			width:100%;
-			$top: $headerBarHeight;
-			top:$top;
-			position: fixed;
-		}
-	}
-}
-
-
-
-#header-global-nav {
-	$height : $globalNavHeight;
-	$colorGlobalNavButtonBorder: #555; //ボタン両端のボーダー色
-	$colorGlobalNavBg:#333; //グローバルナビの背景色
-	$opacityGlobalNavBg:0.8;
-	background-color: $colorGlobalNavBg;
-
-	/*
-		bodyに.glnav-transparentが設定されている場合(homeなど)、
-		グローバルナビゲーションの透過を行う。その際のネガティブマージン。
-	*/
-	.glnav-transparent & {
-		background-color: transparentize( $colorGlobalNavBg, 1 - $opacityGlobalNavBg );
-	}
-
-	height:$height;
-	letter-spacing: -.40em;
-	text-align: center;
-	
-	@media (max-width: #{$globalNavBreakpoint}){
+	p , aside {
 		display: none;
 	}
-	
-	> ul {
-		width:940px;
-		display: inline-block;
+
+	h1 {
+		padding-left:40px;
 		
-		> li {
-			display: inline-block;
-			letter-spacing: normal;
-			position: relative;
-			width:16.666%;
-			
-			// ボタン両サイドのボーダーの定義
-			&:after,&:first-child:before {
-				content:"";
-				display: block;
-				width:0px;
-				height:$height/2;
-				margin:$height*-0.25 0;
-				border-right:1px solid $colorGlobalNavButtonBorder;
-				position: absolute;
-				top:50%;
-				right:-1px;
-				opacity:1;
-				transition:opacity 0.1s ease-in-out 0s;
-				
-			}
-
-			&:hover:after,&:hover:before,&:hover + li:before{
-				opacity:0;
-			}
-
-			&:first-child:before {
-				left:-1px;
-			}
-
-
-			
-			// ボタン本体
-			> a {
-				font-size: 1.50rem;
-				padding: 0 30px;
-				color: #333;
-				height:$height;
-				line-height:$height;
-				display: block;
-				text-align: center;
-				color:#FFF;
-				font-family:$enSansFontFamily;
-				letter-spacing:0.15rem;
-				transition:background 0.1s ease-in-out 0s;
-				-webkit-tap-highlight-color:rgba(0,0,0,0);
-				
-				&:focus {
-					outline-color: transparent;
-	  				outline-style: none;
-				}
-			}
-
-			&:hover , > a:focus ,  > a:hover{
-				position: relative;
-				z-index:1;
-				background-color: $globalNavFocusBg;
-				text-decoration: none;
-			}
-			
-			> ul {
-				display: none;
-				background-color: $globalNavSubMenuBg;
-				position: absolute;
-				width:calc(100% + 35px);
-				height:0;
-				overflow:hidden;
-				
-				> li {
-					
-					> a {
-						$size : 14px;
-						display: block;
-						box-sizing:border-box;
-						padding:0 20px;
-						$height : $globalNavSubMenuHeight;
-						height:$height;
-						line-height:$height;
-						text-align: left;
-						color:#FFF;
-						position: relative;
-						
-						&:after {
-							position: absolute;
-							content: "\f105";
-							right:0.7em;
-							font : normal normal normal 14px/1 FontAwesome;
-							text-rendering : auto;
-							-webkit-font-smoothing : antialiased;
-							-moz-osx-font-smoothing : grayscale;
-							font-size:$size;
-							width:$size;
-							height:$size;
-							margin:$size*-0.5 0;
-							top:50%;
-							
-							
-							right:12px;
-							
-						}
-						
-						&:hover {
-							background-color: $globalNavSubMenuBgSelected;
-							text-decoration: none;
-						}
-					}
-				}
-			}
-
-			&:hover > ul {
-				display: block;
-				height:auto;
-			}
-
-		}
-	}
-
-}
-
-@media (max-width: #{$globalNavBreakpoint}){
-	$headerInnerSize: $smartphoneHeaderSize;
-	#header-bar {
-		
-		box-shadow:0 0 5px rgba(0,0,0,0.2);
-
-		border:none;
-		
-		p , aside {
-			display: none;
-		}
-
-		h1 {
-			padding-left:40px;
-			
-		}
-		
-		//ランドスケープに満たないスマートフォンの場合、ロゴをセンタリング
-		@media (max-width: #{$smartphoneWidthLandscape - 1px}){
-			h1 {
-				width: 120px;
-				display: block;
-				position: absolute;
-				top:0;left:50%;
-				margin:0 -60px;
-				text-align: center;
-				padding:0;
-				img {width:120px;margin:4px 0;}
-				aside {
-					display: none;
-				}
-			}
-			
-		}
-		
-
-		#header-bar-nav {
-			> ul {
-				> li {
-					display: none;
-					&#header-bar-cart {
-						display: inline-block;
-					}
-					> a {
-						line-height: $headerInnerSize;
-						height: $headerInnerSize;
-						border:none;
-						
-						
-						img {
-							position:relative;
-							top:-1px;
-							right:-2px;
-							width:23px;
-							
-						}
-					}
-				}
-			}		
-		}
 	}
 	
-	#header-sp-handle {
-		position: absolute;
-		top:0;left:0;
-		padding: ($smartphoneHeaderSize - $smartphoneHandleSize)*0.52;
-		> a {
-			width: $smartphoneHandleSize ;
-			height: $smartphoneHandleSize ;
-			display: block;
-			position: relative;
-			-webkit-tap-highlight-color:rgba(0,0,0,0);
-			
-			&:after {
-				content:"";
-				display: block;
-				border-radius:50%;
-				background:rgba(0,0,0,0.2);
-				opacity:0;
-				transition: opacity 0.3s ease-in-out 0s;
-				width:$smartphoneHeaderIconTouchSize;
-				height:$smartphoneHeaderIconTouchSize;
-				position: absolute;
-				margin : $smartphoneHeaderIconTouchSize * -0.5;
-				left:50%;top:50%;
-			}
-			
-			&:active {
-				&:after {
-					opacity:1;
-				}
-			}
-			
-			div {
-				position: absolute;
-				background-color: #555;
-				margin:-2px -8px;
-				left:50%;
-				height:3px;
-				width:$smartphoneHandleSize;
-				
-				transform :rotate(0deg);
-				transition :all 0.3s ease-out 0.3s;
-				z-index:20;
-				
-				&:nth-child(1){top:12%;}
-				&:nth-child(2){top:50%;opacity:1;}
-				&:nth-child(3){top:87%;}
-
-				.drawer-opened & {
-					background-color:#FFF;
-					top:50%;
-					&:nth-child(1){
-						transform : rotate(135deg) ;
-					}
-					&:nth-child(2){
-						opacity:0;
-						transform : rotate(180deg) ;
-					}
-					&:nth-child(3){
-						transform : rotate(-135deg) ;
-					}
-				}
-				
-				&.shade {
-					background-color:rgba(0,0,0,0.7);
-					position: fixed;
-					top: 0;
-					left: 8px;
-					width: 100%;
-					height: 100%;
-					z-index:10;
-					display:none;
-					.drawer-opened & {
-						display:block;
-					}
-				}
-			}
-		}
+	#header-bar-content {
+		padding-left:$headerInnerSize;
+		line-height:$headerInnerSize;
+		color:#fff;
 	}
 }
 
-
-#header-notificate {
-	display:none;
-	background-color: #ccc;
+#header-sp-handle {
+	position: absolute;
+	top:0;left:0;
+	padding: ($smartphoneHeaderSize - $smartphoneHandleSize)*0.52;
 	
-	transition:padding-top 0.2s ease-in-out 0s;
-	
-	&.active {
+	> a {
+		width: $smartphoneHandleSize ;
+		height: $smartphoneHandleSize ;
 		display: block;
-	}
-	
-	body:not(.glnav-nofollow) &{
-		padding-top:0;
-		&.active {
-			padding-top:$globalNavHeight;//上部ナビゲーション全体をシフト
-			@media (max-width: #{$globalNavBreakpoint}){
-				padding-top:0;
-			}
-		}	
-	}
-	
-	.glnav-transparent &{
-		top:$globalNavHeight;
-	}
-	.glnav-nofollow.glnav-transparent & {
-		padding-top:0;
-		&.active {
-			padding-top:$globalNavHeight;//グローバルナビゲーション透過部分をシフト
-			@media (max-width: #{$globalNavBreakpoint}){
-				padding-top:0;
-			}
+		position: relative;
+		-webkit-tap-highlight-color:rgba(0,0,0,0);
+		
+		&:after {
+			content:"";
+			display: block;
+			border-radius:50%;
+			background:rgba(0,0,0,0.2);
+			opacity:0;
+			transition: opacity 0.3s ease-in-out 0s;
+			width:$smartphoneHeaderIconTouchSize;
+			height:$smartphoneHeaderIconTouchSize;
+			position: absolute;
+			margin : $smartphoneHeaderIconTouchSize * -0.5;
+			left:50%;top:50%;
 		}
-	}
-	
-	
-	
-	.glnav-nofollow.glnav-transparent.notificate-overlay &{
-		padding-top:0;
-	}
-	
-	.notificate-overlay &{
-		padding-top:0;
-		position:absolute;
-		top:$headerBarHeight + $globalNavHeight;
-		@media (max-width: #{$globalNavBreakpoint}){
-			top:$headerBarHeight;
-		}
-		left:0;
-		width:100%;
-		.glnav-transparent & {
-			top:$globalNavHeight;
-		}
-	}
-	
-	.notificate {
-		background-color: #333;
-		color:#FFF;
-		h2,h3,h4 {
-			font-size:1.9rem;
-			letter-spacing:0.06rem;
-			font-weight:bold;
-			text-align:center;
-			padding:0px 0 10px 0;
-			font-family:$futura;
-		}
-		> div {
-			max-width:960px;
-			padding:10px;
-			margin:0 auto;
-			position: relative;
-			a.close {
-				display: block;
-				position: absolute;
-				top:6px;
-				right:6px;
-				color:#FFF;
-				font-size:2.4rem;
+		
+		&:active {
+			&:after {
+				opacity:1;
 			}
 		}
 		
-		&.simple {
+		div {
+			position: absolute;
+			background-color: $colorHeaderBarElement;
+			margin:-2px -8px;
+			left:50%;
+			height:3px;
+			width:$smartphoneHandleSize;
 			
-			> div {
-				padding: 10px;
+			transform :rotate(0deg);
+			transition :all 0.3s ease-out 0.3s;
+			z-index:20;
+			
+			&:nth-child(1){top:12%;}
+			&:nth-child(2){top:50%;opacity:1;}
+			&:nth-child(3){top:87%;}
+
+			.drawer-opened & {
+				background-color:#FFF;
+				top:50%;
+				&:nth-child(1){
+					transform : rotate(135deg) ;
+				}
+				&:nth-child(2){
+					opacity:0;
+					transform : rotate(180deg) ;
+				}
+				&:nth-child(3){
+					transform : rotate(-135deg) ;
+				}
 			}
 			
-			@media (min-width: #{$globalNavBreakpoint + 1px}){
-				> div {
-					padding:10px 30px 10px 10px;
-					&:after {
-						content:"";
-						display: block;
-						clear:both;
-					}
-				}
-				h2,h3,h4 {
-					width: calc(100% - 300px);
-					float:left;
-					line-height:5.0rem;
-					font-size:2.2rem;
-					padding:0;
-					text-align:left;
-				}
-				
-				.ui-btn {
-					float:right;
+			&.shade {
+				background-color:rgba(0,0,0,0.7);
+				position: fixed;
+				top: 0;
+				left: 8px;
+				width: 100%;
+				height: 100%;
+				z-index:10;
+				display:none;
+				.drawer-opened & {
+					display:block;
 				}
 			}
-			
 		}
 	}
-	
 }

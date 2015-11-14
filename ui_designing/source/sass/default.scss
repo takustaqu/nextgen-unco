@@ -41,11 +41,13 @@ html {
 }
 
 body {
-	font-family: $jaSansFontFamily;
-	font-size: 1.3em; //bodyのみはremを指定しない(Chromeのバグ対策)
+	font-family:$enSansFontFamily;
+	font-size: 1.6em; //bodyのみはremを指定しない(Chromeのバグ対策)
+	line-height:1.4em;
 	color: $defaultTextColor;
 	background-color: $colorBody;
 	width:100%;
+	padding-top:$smartphoneHeaderSize;
 }
 
 //リンクの基本動作設定(ホバー時のみ下線表示)
@@ -130,6 +132,33 @@ hr {
 		}
 	}
 }
+
+
+.profile {
+	display: table;
+	width:100%;
+	li {
+		display:table-row;
+		> span , > strong , > div {
+			display:table-cell;
+			padding:16px 0;
+			border-bottom:1px dotted #D9D9D9;
+			vertical-align:top;
+		}
+
+		> strong {
+			width:120px;
+			text-align:right;
+			font-weight:bold;
+			color:#999;
+		}
+		> span , > div {
+			padding-left:1.5em;
+		}
+	}
+}
+
+
 
 /* ########## Analyrics等のレイアウト影響吸収 ########## */
 #g-retargeting {

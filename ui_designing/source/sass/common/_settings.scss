@@ -2,11 +2,12 @@
 
 
 //基本色
-	$colorBody:#f3f3f3; //body領域の背景色
+	$colorBody:#FFF6DE; //body領域の背景色
 	
-	$colorPrimary: #e75c59; //サイト上部などに使われるキーカラー
+	$colorPrimary: #D35E1A; //サイト上部などに使われるキーカラー
 	$colorLightGray: #f3f3f3; //グローバルナビ上部のグレーエリアなどの明灰色
-	$colorHeaderBar:#FFF;
+	$colorHeaderBar:#D35E1A;
+	$colorHeaderBarElement:#FFF;
 	$colorDarkGray: #4d4d4d; //フッターナビの背景などの濃灰色
 	$colorDarkGrayDivider: #5d5d5d; //フッターナビ内部の仕切り線色
 	$colorSideDrawer:$colorDarkGray; //htmlの背景色(スマートフォンのサイドバーナビ色)

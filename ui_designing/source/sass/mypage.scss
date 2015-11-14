@@ -1,0 +1,184 @@
+@import '_settings';
+
+
+.toilets {
+	&:after{
+		content:"";
+		display: block;
+		clear:both;
+	}
+	li {
+		box-sizing:border-box;
+		width:25%;
+		float:left;
+		padding:8px;
+	}
+	.toilet {
+		display: block;
+		background-color: #CCC;
+		box-shadow:0 0 10px #ccc;
+		color:#333;
+		border-radius:4px;
+		overflow:hidden;
+		
+		&:hover {
+			text-decoration:none;
+		}
+		
+		>.thumbnail {
+			width:100%;
+			position: relative;
+			overflow:hidden;
+			&:after {
+				padding-bottom:100%;
+				display: block;
+				content:"";
+			}
+			img {
+				max-width:100%;
+				position: absolute;
+				top:0;
+				left:0;
+			}
+		}
+		
+		.detail {
+			
+			$arrowSize : 10px;
+			$borderSize:2px;
+			$borderColor : #FFF;//$colorPrimary;
+			$boxColor : #FFF;
+			
+			background-color: $boxColor;
+			display: block;
+			font-size:1.4rem;
+			line-height:1.3em;
+			min-height:4em;
+			position: relative;
+			padding:0.8rem;
+			
+			border-top:$borderSize solid $borderColor;
+			
+			box-shadow:0 0 60px rgba(0,0,0,0.8);
+			
+			.title {
+				border-bottom:1px dotted #ccc;
+				padding-bottom: 0.5em;
+				margin-bottom: 0.5em;
+			}
+
+			
+			
+			&:after,&:before {
+				content:"";
+				margin: 0 $arrowSize * -1;
+				border:$arrowSize solid $boxColor;
+			}
+			&:before {
+				border-color:transparent transparent $borderColor transparent;
+				position: absolute;
+				top:$arrowSize * -2 -$borderSize;
+				right:50%;
+			}
+			&:after {
+				border-color:transparent transparent $boxColor transparent;
+				position: absolute;
+				top:$arrowSize * -2 ;
+				right:50%;
+			}
+
+			.review {
+				.star {
+					color:orange;
+					text-shadow:0 1px 0 rgba(0,0,0,0.1) ;
+				}
+				.count {
+					$color : #DDD;
+					$borderColor : $color;
+					$borderSize:1px;
+					color:darken($color,40%);
+					display: inline-block;
+					border:$borderSize solid $borderColor;border-radius:3px;
+					position: relative;
+					font-size:1.2rem;
+					padding:3px 6px;
+					line-height:1em;
+					$miniArrowSize:4px;
+					margin-left:2px + $miniArrowSize;
+					margin-right:0.5em;
+					
+					&:after,&:before {
+						content:"";
+						border:$miniArrowSize solid $boxColor;
+						margin:$miniArrowSize*-1 0;
+					}
+					&:before {
+						border-color:transparent $borderColor transparent transparent;
+						position: absolute;
+						left:$miniArrowSize * -2 - $borderSize;
+						top:50%;
+					}
+					&:after {
+						border-color:transparent $boxColor transparent transparent;
+						position: absolute;
+						left:$miniArrowSize * -2 + 1px;
+						top:50%;
+					}
+				}
+			}
+		}		
+	}
+}
+
+.panel header.toilet {
+	position: relative;
+	
+	.bg {
+		position: relative;
+		min-height:200px;
+		overflow:hidden;
+		width:100%;
+		height:100%;
+		& , & img {
+			
+			display: block;
+		}
+		img {
+			position: absolute;
+			width:110%;
+			height:110%;
+			left:-5%;
+			top:-5%;
+			background-position: center center;
+			filter: blur(4px);
+
+		}
+
+	}
+
+	.thumbnail {
+		$position:10px;
+		width:120px;
+		position: absolute;
+		bottom:$position*-1;
+		right:$position;
+		z-index:10;
+		border:2px solid #fff;
+		box-shadow : 0 0 8px rgba(0,0,0,0.5)
+		
+	}
+	margin-bottom:20px;
+}
+
+p.description {
+	
+}
+
+.panel {
+	.main-descripion {
+		padding:16px;	
+		margin: 0 16px;
+		background-color: #EEE;
+		border-radius:8px;
+	}
+}
