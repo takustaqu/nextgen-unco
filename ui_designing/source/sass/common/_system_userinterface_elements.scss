@@ -31,12 +31,7 @@ a.ui-btn , .column .ui-btn {
 	line-height: $buttonHeight;
 	font-size: 1.3rem;
 	font-weight:bold;
-	
-	-webkit-transition: background-color 0.1s ease-out 0s;
-	   -moz-transition: background-color 0.1s ease-out 0s;
-	    -ms-transition: background-color 0.1s ease-out 0s;
-	     -o-transition: background-color 0.1s ease-out 0s;
-	        transition: background-color 0.1s ease-out 0s;
+	transition: background-color 0.1s ease-out 0s;
 	
 	//スマートフォン用
 	@media (max-width: 777px) {

@@ -16,13 +16,16 @@
 	.toilet {
 		display: block;
 		background-color: #CCC;
-		box-shadow:0 0 10px #ccc;
+		box-shadow:0 1px 2px #EEE;
 		color:#333;
 		border-radius:4px;
 		overflow:hidden;
+		transition:box-shadow .1s ease-in-out 0s,transform .3s cubic-bezier(0.76, -0.18, 0.32, 1.81) 0s;
 		
 		&:hover {
 			text-decoration:none;
+			box-shadow:0 0 10px #ccc;
+			transform:scale(1.05);
 		}
 		
 		>.thumbnail {
@@ -297,7 +300,6 @@ p.description {
 		&.ban{
 		 	background-color: red;
 		}
-
 	}
 	.status {
 		text-align:center;
@@ -313,4 +315,47 @@ p.description {
 		padding:0;
 	}
 
+	
+
+}
+
+#welcome-message {
+	height:300px;
+	color:#FFF;
+	position: relative;
+	.bg {
+		width:100%;
+		height:100%;
+		overflow:hidden;
+		& , & img {
+			
+		}
+		img {
+			width:110%;
+			height:110%;
+			margin:-1% -5%;
+			background-size: cover;
+			background-position: center;
+			filter: blur(4px);
+		}
+	}
+	.header-info , h1 {
+		position: absolute;
+		left:0;width:100%;
+		z-index:10;
+		text-align:center;
+		font-weight:100;
+	}
+	h1 {
+		top:48%;
+		font-size:4.2rem;
+		line-height:1em;
+		letter-spacing:2px;
+		margin:-18px 0;
+	}
+	.header-info {
+		top:calc(50% + 25px);
+		font-size:1.2rem;
+		letter-spacing:0.25rem;
+	}
 }

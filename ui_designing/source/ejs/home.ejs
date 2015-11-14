@@ -1,32 +1,28 @@
 <% 
-	var title = "ホーム",
+	var title = "ホーム画面",
 		bodyClass = "page-home",
 		pageCss = "system";
 %>
 <% include elements/_header %>
 
+
+<header id="welcome-message">
+	<h1>Welcome, Username</h1>
+	<div class="header-info">
+		There are 100 of toilet around 1km from you.
+	</div>
+
+	<div class="bg">
+		<img src="#" alt="" style="background-image:url(http://maps.googleapis.com/maps/api/streetview?size=960x480&amp;location=35.666087999999995,139.73195339999998&amp;heading=235&amp;sensor=false);">
+	</div>
+
+</header>
 <div class="sections">
 	<section>
 		<div class="column">
 			<div class="col-full">
 				<div class="panel">
-					<h2>
-						ACCOUNT DETAILS
-					</h2>
-				</div>
-
-				<div class="panel">
-					<h3>Profile</h3>
-					<ul class="profile">
-						<li><strong>Username</strong><span>takustaqu</span></li>
-						<li><strong>Bio</strong><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt cum reiciendis consectetur amet libero sapiente dolore quaerat ex. Quia debitis accusamus aperiam ullam totam natus excepturi sed, aliquam suscipit. Aut?</span></li>
-						<li><strong>Email</strong><span>lorem@ipsum.com</span></li>
-						<li><strong>PhoneNumber</strong><span>000-0000-0000</span></li>
-					</ul>
-				</div>
-
-				<div class="panel">
-					<h3>Your toilets</h3>
+					<h3>NEARBY TOILETS</h3>
 					<ul class="toilets">
 						<li>
 							<a class="toilet">

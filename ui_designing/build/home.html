@@ -1,32 +1,47 @@
-<% 
-	var title = "ホーム",
-		bodyClass = "page-home",
-		pageCss = "system";
-%>
-<% include elements/_header %>
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>ホーム画面</title>
+	<link rel="stylesheet" href="../css/default.css">
+	<link rel="stylesheet" href="../css/system.css">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body class="page-home">
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
+<header id="header-bar">
+	<div id="header-bar-content">
+		Unterest Beta
+	</div>
+	<div id="header-sp-handle">
+		<a href="#"><div></div><div></div><div></div><div class="shade"></div></a>
+	</div>
+	<div id="panic-button">
+		PANIC
+	</div>
+</header>
+
+
+
+<header id="welcome-message">
+	<h1>Welcome, Username</h1>
+	<div class="header-info">
+		There are 100 of toilet around 1km from you.
+	</div>
+
+	<div class="bg">
+		<img src="#" alt="" style="background-image:url(http://maps.googleapis.com/maps/api/streetview?size=960x480&amp;location=35.666087999999995,139.73195339999998&amp;heading=235&amp;sensor=false);">
+	</div>
+
+</header>
 <div class="sections">
 	<section>
 		<div class="column">
 			<div class="col-full">
 				<div class="panel">
-					<h2>
-						ACCOUNT DETAILS
-					</h2>
-				</div>
-
-				<div class="panel">
-					<h3>Profile</h3>
-					<ul class="profile">
-						<li><strong>Username</strong><span>takustaqu</span></li>
-						<li><strong>Bio</strong><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt cum reiciendis consectetur amet libero sapiente dolore quaerat ex. Quia debitis accusamus aperiam ullam totam natus excepturi sed, aliquam suscipit. Aut?</span></li>
-						<li><strong>Email</strong><span>lorem@ipsum.com</span></li>
-						<li><strong>PhoneNumber</strong><span>000-0000-0000</span></li>
-					</ul>
-				</div>
-
-				<div class="panel">
-					<h3>Your toilets</h3>
+					<h3>NEARBY TOILETS</h3>
 					<ul class="toilets">
 						<li>
 							<a class="toilet">
@@ -287,4 +302,13 @@
 </div>
 
 <!-- end contents -->
-<% include elements/_footer %>
+
+<footer>
+	<img src="/images/system/kirinsanorg_wl.svg" alt="">	
+</footer>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="/lib/modernizer/modernizr.js"></script>
+
+
+</body>
+</html>
