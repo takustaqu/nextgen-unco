@@ -1,4 +1,8 @@
-
+@keyframes alert {
+  0% { background-color: $colorPrimary; }
+  35% { background-color: red; }
+  100% { background-color: $colorPrimary; }
+}
 
 $headerInnerSize: $smartphoneHeaderSize;
 #header-bar {
@@ -11,7 +15,14 @@ $headerInnerSize: $smartphoneHeaderSize;
 	top:0;
     transition: top .5s cubic-bezier(0.9, -0.24, 0.04, 1.19) 0s;
     z-index:1000;
-
+	transition: background-color 0.5s ease-in-out 0s;
+	
+	
+	.glnav-panic & , .panic-mode & {
+		animation-duration: 1s;
+		animation-name: alert;
+		animation-iteration-count: infinite;
+	}
 	
 	.glnav-hide & {
 		top: $headerInnerSize * -1;

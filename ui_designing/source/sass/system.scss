@@ -1,26 +1,46 @@
 @import '_settings';
 
-
+$displayPhoneNarrow:480px;
 .toilets {
+	
+	@media (max-width:#{$displayPhoneNarrow}){
+		margin: 0 -4px;
+	}
 	&:after{
 		content:"";
 		display: block;
 		clear:both;
 	}
+	
 	li {
 		box-sizing:border-box;
 		width:25%;
 		float:left;
 		padding:8px;
+		
+		@media (max-width:#{$displayPhone}){
+			width:50%;
+		}
+
+		@media (max-width:#{$displayPhoneNarrow}){
+			width:100%;
+			padding:0;
+			border-bottom:2px solid #FFF;
+		}
 	}
 	.toilet {
 		display: block;
-		background-color: #CCC;
 		box-shadow:0 1px 2px #EEE;
+		
 		color:#333;
 		border-radius:4px;
 		overflow:hidden;
 		transition:box-shadow .1s ease-in-out 0s,transform .3s cubic-bezier(0.76, -0.18, 0.32, 1.81) 0s;
+		
+		@media (max-width:#{$displayPhoneNarrow}){
+			border-radius:0;	
+			box-shadow:0 0px 3px #DDD;
+		}
 		
 		&:hover {
 			text-decoration:none;
@@ -43,6 +63,11 @@
 				top:0;
 				left:0;
 			}
+
+			@media (max-width:#{$displayPhoneNarrow}){
+				float:left;
+				width:64px;
+			}
 		}
 		
 		.detail {
@@ -62,15 +87,22 @@
 			
 			border-top:$borderSize solid $borderColor;
 			
-			box-shadow:0 0 60px rgba(0,0,0,0.8);
+			//box-shadow:0 0 60px rgba(0,0,0,0.8);
 			
 			.title {
 				border-bottom:1px dotted #ccc;
 				padding-bottom: 0.5em;
 				margin-bottom: 0.5em;
+				@media (max-width:#{$displayPhoneNarrow}){
+					padding: 0.4em 0;
+					margin-bottom: 0.3em;
+				}
 			}
 
-			
+			@media (max-width:#{$displayPhoneNarrow}){
+				width:calc(100% - 80px);
+				float:left;
+			}
 			
 			&:after,&:before {
 				content:"";
@@ -89,6 +121,30 @@
 				top:$arrowSize * -2 ;
 				right:50%;
 			}
+
+			@media (max-width:#{$displayPhoneNarrow}){
+				$arrowSize : 8px;
+				padding:0 0.8rem;
+				&:after,&:before {
+					margin: $arrowSize * -1 0;
+					right :auto;
+				}
+
+				&:before {
+					border-color:transparent $borderColor transparent transparent;
+					position: absolute;
+					left:$arrowSize * -2 ;
+					top:50%;
+				}
+				&:after {
+					border-color:transparent $boxColor transparent transparent;
+					position: absolute;
+					left:$arrowSize * -2 + 1px ;
+					top:50%;
+				}
+
+
+			}
 		}		
 	}
 }
@@ -98,6 +154,9 @@
 	.star {
 		color:orange;
 		text-shadow:0 1px 0 rgba(0,0,0,0.1) ;
+		@media (max-width:#{$displayPhoneNarrow}){
+			font-size:1.2rem;
+		}
 	}
 	.count {
 		$color : #DDD;
@@ -113,6 +172,10 @@
 		$miniArrowSize:4px;
 		margin-left:2px + $miniArrowSize;
 		margin-right:0.5em;
+		
+		@media (max-width:#{$displayPhoneNarrow}){
+			font-size:1.0rem;
+		}
 		
 		&:after,&:before {
 			content:"";
@@ -323,6 +386,13 @@ p.description {
 	height:300px;
 	color:#FFF;
 	position: relative;
+	
+	text-shadow:0 0 8px #000;
+	
+	@media (max-width:#{$displayPhone}){
+		height:250px;
+	}
+	
 	.bg {
 		width:100%;
 		height:100%;
@@ -352,10 +422,39 @@ p.description {
 		line-height:1em;
 		letter-spacing:2px;
 		margin:-18px 0;
+		@media (max-width:#{$displayPhone}){
+			font-size:2.2rem;
+			letter-spacing:2px;
+		}
 	}
+
 	.header-info {
-		top:calc(50% + 25px);
+		top:calc(50% + 5px);
 		font-size:1.2rem;
-		letter-spacing:0.25rem;
+		letter-spacing:0.1rem;
+		@media (max-width:#{$displayPhone}){
+			font-size:1.0rem;
+		}
+	}
+
+}
+
+#open-userpage {
+	//text-shadow:none;
+	
+	top:5px;
+	position: absolute;
+	width:100%;
+	text-align:center;
+	top:20px;
+	
+	a {
+		color:#FFF;
+		border:1px solid #FFF;
+		display:inline-block;
+		font-size:1.2rem;
+		padding:8px 12px;
+		border-radius:3px;
+		line-height:1em;
 	}
 }
