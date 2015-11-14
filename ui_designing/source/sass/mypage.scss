@@ -134,6 +134,18 @@
 .panel header.toilet {
 	position: relative;
 	
+	a.vr-ready {
+		$position:8px;
+		position: absolute;
+		left:$position;
+		top:$position;
+		line-height:1em;
+		border-radius:6px;
+		color:#FFF;
+		border:1px solid #FFF;
+		padding:6px 16px;
+	}
+
 	.bg {
 		position: relative;
 		min-height:200px;
