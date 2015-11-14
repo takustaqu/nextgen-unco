@@ -32,6 +32,14 @@
   <script type="text/javascript">
   var app = new CardboardApp();
   init(app);
+  var canvas = document.querySelector('canvas');
+  canvas.addEventListener('click', function() {
+    if (canvas.webkitRequestFullscreen) {
+      canvas.webkitRequestFullscreen();
+    } else if (canvas.requestFullscreen) {
+      canvas.requestFullscreen();
+    }
+  });
   </script>
 </body>
 
