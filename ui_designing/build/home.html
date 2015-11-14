@@ -22,7 +22,7 @@
 		<i class="fa fa-exclamation-triangle"></i>PANIC
 	</div>
 </header>
-
+<div id="geolocating"></div>
 
 
 <header id="welcome-message">
@@ -45,10 +45,53 @@
 	<section>
 		<div class="column">
 			<div class="col-full">
-				<div class="panel">
+				<div class="panel" id="nearby-toilets">
 					<h3>NEARBY TOILETS</h3>
 					<ul class="toilets" id="default-toilet-list"></ul>
 				</div>
+
+				<div class="panel" id="panicmode-toilets">
+					<h3>NEAREST TOILETS <small>KEEP CALM AND NEVER GIVE UP. <br>WE STILL CALLING NEARLY TOILETS OWNER.</small></h3>
+					<ul class="toilet-finder">
+					<li>
+						<div class="status">
+							<span class="icon"><i class="fa fa-ellipsis-h"></i></span>
+							<span class="distance">9999m</span>
+						</div>
+						<div class="detail"></div>
+					</li>
+
+					<li class="ban">
+						<div class="status">
+							<span class="icon"><i class="fa fa-ban"></i></span>
+							<span class="distance">9999m</span>
+						</div>
+					</li>
+					<li class="allow">
+						<div class="status">
+							<span class="icon"><i class="fa fa-thumbs-up"></i></span>
+							<span class="distance">9999m</span>
+						</div>
+						<div class="detail">
+
+							<div class="item">
+								<div class="thumbnail"><img src="/images/sampletoilet.jpg"></div>
+								<div class="price">¥900</div>
+								<div class="data"><div class="title">鷺ノ宮HQ</div><div class="review-counts"><span class="star"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></span><span class="count">2</span> <i class="fa fa-comment"></i><span class="count">1</span></div></div>
+								<div class="buttons">
+									<a href="" class="ui-btn ui-btn-positive">
+										Choose this one
+									</a>
+									<a href="" class="ui-btn">
+										Check details
+									</a>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				</div>
+
 			</div>
 		</div>
 	</section>
@@ -73,7 +116,7 @@
 window.onload = function(){
 
   $.ajax({
-    url: "/api/get_toilets.json",
+    url: "http://api.airwn.co/api/get_toilets",
     dataType: "JSON",
     cache: false,
     success: function(data, textStatus){
@@ -87,6 +130,5 @@ window.onload = function(){
   });
 
 }
-
 
 </script>

@@ -207,3 +207,20 @@ hr {
     	color:#333;
     }
 }
+
+#geolocating {
+
+	body.geolocating & {display:block;}
+	display:none;
+	position: fixed;
+	z-index:9999;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	background-color: #000;
+	background-image: url(/images/system/geolocating.gif),url(/images/system/geoloc_message.png);
+	background-position: center center , center 70%;
+	background-repeat:no-repeat;
+	opacity:0.8;
+}
