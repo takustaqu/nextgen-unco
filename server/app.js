@@ -36,6 +36,10 @@ router
   .get('/', function(req, res) {
     res.render('index');
   })
+  .get('/panorama.html', function(req, res) {
+    res.set('Content-Type', 'text/html');
+    res.sendFile(__dirname + '/public/panorama.html')
+  })
   .get(/\/(.+).html/, function(req, res) {
     res.render(req.params[0]);
   });

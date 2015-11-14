@@ -100,7 +100,7 @@ _tool = {
 		var star = _tool.createStar(obj.reviewOverview.rateAverage);
 		var ratedCount = _tool.createCount(obj.reviewOverview.rateCount);
 		var reviewCount = _tool.createCount(obj.reviewOverview.reviewCount);
-		var vr = '<a href="#vr" class="vr-ready">VR Ready</a>';
+		var vr = '<a href="panorama.html" class="vr-ready">VR Ready</a>';
 
 		var gmap = '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12974.857270082344!2d139.78311095!3d35.610113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1447481309156" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>'
 		//var prewrite = '<a class="toilet" data-toilet-id="'+obj.id+'" ><div class="thumbnail"><img src="'+obj.thumbnail+'"></div>'+price+'<div class="detail"><div class="title">'+obj.name+'</div><div class="review-counts"><span class="star">'+star+'</span>'+ratedCount+' <i class="fa fa-comment"></i>'+reviewCount+'</div></div></a>';
