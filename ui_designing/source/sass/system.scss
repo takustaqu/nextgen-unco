@@ -35,6 +35,7 @@ $displayPhoneNarrow:480px;
 		color:#333;
 		border-radius:4px;
 		overflow:hidden;
+		position: relative;
 		transition:box-shadow .1s ease-in-out 0s,transform .3s cubic-bezier(0.76, -0.18, 0.32, 1.81) 0s;
 		
 		@media (max-width:#{$displayPhoneNarrow}){
@@ -69,6 +70,28 @@ $displayPhoneNarrow:480px;
 				width:64px;
 			}
 		}
+
+		.price {
+			position: absolute;
+			top:5px;
+			right:5px;
+			border-radius: 3px;
+			line-height: 1em;
+			padding:4px 8px;
+			font-size:1.2rem;
+			background-color: #D00;
+			color:#FFF;
+			box-shadow:0 0 2px #FFF;
+			z-index:10;
+			@media (max-width:#{$displayPhoneNarrow}){
+				border: 1px solid #D00;
+				background-color: transparent;
+				color:#D00;
+				padding:3px 4px;
+				font-size:1.1rem;
+			}
+		}
+		
 		
 		.detail {
 			
@@ -98,6 +121,8 @@ $displayPhoneNarrow:480px;
 					margin-bottom: 0.3em;
 				}
 			}
+
+			
 
 			@media (max-width:#{$displayPhoneNarrow}){
 				width:calc(100% - 80px);
@@ -210,18 +235,42 @@ $displayPhoneNarrow:480px;
 		color:#FFF;
 		border:1px solid #FFF;
 		padding:6px 16px;
+		@media (max-width:#{$displayPhone}){
+			left:$position*2;
+		}
+	}
+
+	.price {
+		position: absolute;
+		top:8px;
+		right:8px;
+		border-radius: 3px;
+		line-height: 1em;
+		padding:8px 16px;
+		font-size:1.6rem;
+		background-color: #D00;
+		color:#FFF;
+		box-shadow:0 0 2px #FFF;
+		z-index:10;
+		@media (max-width:#{$displayPhoneNarrow}){
+			right:16px;
+			top:8px;
+		}
 	}
 
 	.bg {
 		position: relative;
-		min-height:200px;
+		min-height:350px;
+		@media (max-width:#{$displayPhone}){
+			min-height:250px;
+			margin-bottom:60px;
+		}
 		overflow:hidden;
 		width:100%;
 		height:100%;
-		& , & img {
-			
-			display: block;
-		}
+		
+		& , & img { display: block;}
+
 		img {
 			position: absolute;
 			width:110%;
@@ -235,6 +284,30 @@ $displayPhoneNarrow:480px;
 
 	}
 
+	h2 {
+		position: absolute;
+		margin:0;
+		padding:20px;
+		bottom:0px;
+		left:0px;
+		text-align:left;
+		border:none;
+		
+		color:#FFF;
+		line-height:1em;
+		text-shadow: 0 0 6px #000, 0 0 6px #000;
+		width:calc(100% - 165px);
+		z-index:5;
+		@media (max-width:#{$displayPhone}){
+			text-align:center;
+			width:100%;
+			padding:0;
+			top:80px;
+			font-size:3.0rem;
+			letter-spacing:3px;
+		}
+	}
+
 	.thumbnail {
 		$position:10px;
 		width:120px;
@@ -243,7 +316,12 @@ $displayPhoneNarrow:480px;
 		right:$position;
 		z-index:10;
 		border:2px solid #fff;
-		box-shadow : 0 0 8px rgba(0,0,0,0.5)
+		box-shadow : 0 0 8px rgba(0,0,0,0.5);
+		@media (max-width:#{$displayPhone}){
+			bottom:-35px;
+			margin: 0 120px*-0.5;
+			left:50%;
+		}
 		
 	}
 	margin-bottom:20px;
@@ -284,9 +362,10 @@ p.description {
 			text-align:center;
 			.icon {
 				img {
+				box-sizing:border-box;
 				max-width:100%;
-				border-radius:8px;
-				border:2px solid $colorPrimary;
+				border-radius:100%;
+				border:4px solid $colorPrimary;
 				}
 			}
 			box-sizing:border-box;
@@ -300,6 +379,7 @@ p.description {
 				background-color: $colorPrimary;
 				border-radius:100px;
 				color:#FFF;
+				font-weight:bold;
 			}
 
 			.icon+.name {
@@ -330,13 +410,66 @@ p.description {
 				border-color:transparent $borderColor transparent transparent;
 				position: absolute;
 				left:$reviewArrowSize * -2 - $borderSize;
-				top:$reviewArrowSize+8px;
+				top:50%;
 			}
 			&:after {
 				border-color:transparent $boxColor transparent transparent;
 				position: absolute;
 				left:$reviewArrowSize * -2 + 1px;
-				top:$reviewArrowSize+8px;
+				top:50%;
+			}
+		}
+
+		@media (max-width:#{$displayPhone}){
+			$userSize : 90px;
+		
+			> .user {
+				width:$userSize;
+				text-align:center;
+				.icon {
+					img {
+					}
+				}
+				box-sizing:border-box;
+				padding-right:1em;
+				
+				.name {
+				}
+
+				.icon+.name {
+					top:-20px;
+				}
+			}
+
+			> .detail {
+
+				$reviewArrowSize : 10px;
+				$boxColor:#FFF;
+				$borderColor:#ccc;
+				$borderSize:1px;
+				width:calc(100% - #{$userSize});
+				box-sizing:border-box;
+				padding-left:1em;
+				font-size:90%;
+				border-left:1px solid $borderColor;
+				
+				&:after,&:before {
+					content:"";
+					border:$reviewArrowSize solid $boxColor;
+					margin:$reviewArrowSize*-1 0;
+				}
+				&:before {
+					border-color:transparent $borderColor transparent transparent;
+					position: absolute;
+					left:$reviewArrowSize * -2 - $borderSize;
+					top:50%;
+				}
+				&:after {
+					border-color:transparent $boxColor transparent transparent;
+					position: absolute;
+					left:$reviewArrowSize * -2 + 1px;
+					top:50%;
+				}
 			}
 		}
 
@@ -429,11 +562,13 @@ p.description {
 	}
 
 	.header-info {
-		top:calc(50% + 5px);
+		top:calc(50% + 25px);
 		font-size:1.2rem;
-		letter-spacing:0.1rem;
+		letter-spacing:0.25rem;
 		@media (max-width:#{$displayPhone}){
 			font-size:1.0rem;
+			top:calc(50% + 5px);
+			letter-spacing:0.1rem;
 		}
 	}
 

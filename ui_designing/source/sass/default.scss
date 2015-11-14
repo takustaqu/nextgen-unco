@@ -159,6 +159,32 @@ hr {
 			width:calc(100% - 120px);
 		}
 	}
+	@media (max-width:#{$displayPhone}){
+		margin-top:2.4em;
+		display: block;
+		> li {
+			display: block!important;
+			> span , > strong , > div {
+				padding-top:0;
+				display: block;
+			}
+			> span , > div {
+				margin-bottom:2em;
+				width:auto;
+				padding-left:.8em;
+				padding-right:.8em;
+				iframe {
+					height:300px;
+				}
+			}
+			> strong {
+				width:auto;
+				text-align:left;
+				padding-bottom:0.3em;
+				border-bottom:none;
+			}
+		}
+	}
 }
 
 #panic-button {
