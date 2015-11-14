@@ -1,6 +1,6 @@
 [
     {
-        "id": "00000",
+        "id": 31,
         "name": "サンプルトイレ1",
         "image": [
             {
@@ -23,7 +23,7 @@
         }
     },
     {
-        "id": "00000",
+        "id": 32,
         "name": "サンプルトイレ2",
         "image": [
             {
@@ -45,7 +45,7 @@
         }
     },
     {
-        "id": "00000",
+        "id": 33,
         "name": "サンプルトイレ3",
         "image": [
             {
@@ -68,7 +68,7 @@
         }
     },
     {
-        "id": "00000",
+        "id": 34,
         "name": "サンプルトイレ3",
         "image": [
             {
@@ -86,6 +86,87 @@
         "price": 100,
         "reviewOverview": {
             "rateAverage": 1.821,
+            "rateCount": 0,
+            "reviewCount": 10
+        }
+    },
+    {
+        "id": 10,
+        "name": "鷺ノ宮HQ",
+        "image": [
+            {
+                "uri": "/images/spherical.jpg",
+                "sperical": true
+            }
+        ],
+        "thumbnail": "/images/sampletoilet.jpg",
+        "lat": [35.730471, 139.638827],
+        "ownerId": 1,
+        "using": false,
+        "price": 900,
+        "reviewOverview": {
+            "rateAverage": 3.821,
+            "rateCount": 2,
+            "reviewCount": 1
+        }
+    },
+    {
+        "id": 12,
+        "name": "渋谷L-shop トイレ",
+        "image": [
+            {
+                "uri": "/images/spherical.jpg",
+                "sperical": true
+            }
+        ],
+        "thumbnail": "/images/sampletoilet.jpg",
+        "lat": [ 35.664270, 139.700518 ],
+        "ownerId": 1,
+        "using": false,
+        "reviewOverview": {
+            "rateAverage": 4.221,
+            "rateCount": 12,
+            "reviewCount": 19
+        }
+    },
+    {
+        "id": 4,
+        "name": "アルプス化粧室",
+        "image": [
+            {
+                "uri": "/images/spherical.jpg",
+                "sperical": true
+            }
+        ],
+        "thumbnail": "/images/sampletoilet.jpg",
+        "lat": [ 35.689405, 139.699745 ],
+        "ownerId": 1,
+        "using": false,
+        "price": 0,
+        "reviewOverview": {
+            "rateAverage": 1.821,
+            "rateCount": 0,
+            "reviewCount": 10
+        }
+    },
+    {
+        "id": 8,
+        "name": "P・スタルクの黄金のう●こ",
+        "image": [
+            {
+                "uri": "/images/spherical.jpg",
+                "sperical": true
+            }
+        ],
+        "thumbnail": "/images/sampletoilet.jpg",
+        "lat": [
+            35.697038, 139.792786
+        ],
+        "ownerId": 1,
+        "using": false,
+        "price": 100,
+        "reviewOverview": {
+            "rateAverage": 2.821,
             "rateCount": 0,
             "reviewCount": 10
         }

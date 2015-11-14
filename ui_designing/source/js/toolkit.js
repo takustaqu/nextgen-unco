@@ -99,5 +99,14 @@ _tool = {
 
 		$(".sections section").empty().append($result);
 
+	},
+
+	setUserDetail : function(obj){
+
+		$("#user-details").html('<li><strong>Username</strong><span>'+obj.username+'</span></li>'+
+			'<li><strong>Bio</strong><span>'+obj.description+'</span></li>'+
+			'<li><strong>Email</strong><span>'+obj.email+'</span></li>'+
+			'<li><strong>PhoneNumber</strong><span>'+obj.phone+'</span></li>');
+
 	}
 }
