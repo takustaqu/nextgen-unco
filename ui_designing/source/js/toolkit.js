@@ -61,7 +61,7 @@ _tool = {
 		},
 	callToiletDetail: function(id,opt){
 		//console.log("トイレ詳細呼び出し:",id);
-		window.location = '/toilet_detail.html';
+		window.location = '/toilet_detail.html?id='+id;
 	},
 	createToiletCell:function(obj){
 		var price = !!obj.price ? '<div class="price">&yen;'+_tool.separateComma(parseInt(obj.price))+'</div>' : "";
