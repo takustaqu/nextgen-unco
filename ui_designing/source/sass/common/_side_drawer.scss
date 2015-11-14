@@ -1,0 +1,69 @@
+
+// bodyそのものの変形
+$sidebarMoveLength : 250px;
+body {
+	transition :transform 0.3s ease-in-out 0s;
+	position:relative;
+	transform :translate3d(0, 0, 0);
+	.no-csstransforms3d & {
+		transform :translate(0,0);
+	}
+	&.drawer-opened{
+		transform :translate3d( $sidebarMoveLength,0, 0);
+		position:fixed;
+		.no-csstransforms3d & {
+			transform :translate( $sidebarMoveLength,0);
+		}
+		margin-right:$sidebarMoveLength*-1;
+		height:100%;
+		
+		#header-sp-handle a {
+			
+		}
+	}
+}
+
+html {
+	overflow-x: hidden;
+	width:100%;
+	height:100%;
+}
+
+// ナビゲーションコンテナ
+
+#sidenav-drawer { 
+	display: block;
+	transition :opacity 0.5s ease-in-out;
+	height:100%;
+	position: absolute;
+	top:0;
+	left:$sidebarMoveLength*-1;
+	opacity:0;
+	
+	overflow-y: scroll;
+	
+	//ログイン・ログアウトでの表示切り替え要素
+	.for-logged-in {display:none;}
+	.logged-in & {
+		.for-logged-in {display:inline-block;}
+		.for-logged-out {display:none;}
+	}
+
+	body.drawer-opened &{
+		display: block;
+		opacity:1;
+		width:$sidebarMoveLength;
+	}
+	
+	#sidenav-lists{// 一部は#footer-globalと共有
+		@import '_phone_drawer_nav';
+		padding:10px;
+	}
+	
+	.column.buttons {
+		padding:5px;
+		> div {
+			padding:5px;
+		}		
+	} 
+}

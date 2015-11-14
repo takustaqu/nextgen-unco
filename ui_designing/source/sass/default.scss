@@ -1,0 +1,138 @@
+
+//リセットスタイル
+@import '_reset';
+
+//フォント読み込み
+@import '_fonts';
+
+/*
+	基本設定群
+	- 設定類は原則として変数にまとめておく。
+*/
+
+@import '_settings';
+
+
+/*
+##コード規約について
+	
+###クラス命名
+	.区分-種類-用途
+	この形式で統一。用途についてはデフォルトは排除。
+
+*/
+
+
+@import "system_userinterface_elements";
+
+
+/* 認証回り */
+@import "system_authencation_interfaces";
+
+
+
+/* ########## 初期設定 ########## */
+
+// html側のベースフォントサイズは、remによるpx近似指定のため62.5%に設定
+html {
+	font-size: 62.5%;
+	width:100%;
+	background-color: $colorSideDrawer;
+}
+
+body {
+	font-family: $jaSansFontFamily;
+	font-size: 1.3em; //bodyのみはremを指定しない(Chromeのバグ対策)
+	color: $defaultTextColor;
+	background-color: $colorBody;
+	width:100%;
+}
+
+//リンクの基本動作設定(ホバー時のみ下線表示)
+a {
+	text-decoration: none;
+	color: $defaultTextColor;
+	&:hover { text-decoration: underline; }
+}
+
+hr {
+	display: block;
+	border: 1px solid #ccc;
+	border-width: 1px 0 0 0;
+}
+
+/* ########## グローバルヘッダー ########## */
+@import '_header';
+
+/* ########## スマートフォン用サイドドロアー ########## */
+#sidenav-drawer { display: none; }
+@media (max-width: #{$globalNavBreakpoint}){
+@import '_side_drawer';
+}
+
+/* ########## グローバルフッター ########## */
+@import '_footer';
+
+/* ########## 基本レイアウト要素 ########## */
+@import '_layouts';
+
+/* パンくず */
+#breadcrumb {
+	width:100%;
+	top:0;
+	left:0;
+	
+	ul {
+		max-width:960px;
+		padding:$defaultScreenPadding $defaultScreenPadding;
+		margin:0 auto;
+		font-size:0;
+		> li {
+			display: inline-block;
+			margin:0;
+			font-size:1.3rem;
+			
+			& , a {
+				color:#999;
+			}
+			
+			&:after {
+				content: ">";
+				display: inline-block;
+				margin:0 0.7em;
+			}
+			&:last-child {
+				
+				& , a {
+					color:#333;
+				}
+			
+				&:after {
+					display:none;
+				}
+			}
+		}
+	}
+	
+	&.dark {
+		ul {
+			> li {
+				& , a {
+					color:#FFF;
+				}
+				
+				&:last-child {
+					& , a {
+						color:#FFF;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* ########## Analyrics等のレイアウト影響吸収 ########## */
+#g-retargeting {
+	height: 0px;
+	overflow: hidden;
+}

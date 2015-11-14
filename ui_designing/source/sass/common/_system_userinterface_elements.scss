@@ -1,0 +1,607 @@
+/*
+ ボタン
+*/
+
+$btnColorFacebook : #3e6eaf ;
+$btnColorFacebookBorder : #3460a1 ;
+
+.ui-btn , .column .ui-btn {
+	
+	$buttonHeight : 50px;
+	$buttonPadding : 20px;
+	
+	$buttonHeightSp : $buttonHeight*0.84; //42pxの近似値に
+	$buttonPaddingSp : $buttonPadding*0.84; //42pxの近似値に
+
+	display: inline-block;
+	box-sizing: border-box;
+	height: $buttonHeight;
+	position: relative;
+	
+	border: none;
+	margin: 1px 0;
+	padding: 0 $buttonPadding;
+	float: none;
+	
+	background-color: $btnColorDefault;
+	text-align: center;
+	color: #FFF;
+	
+	line-height: $buttonHeight;
+	font-size: 1.3rem;
+	font-weight:bold;
+	
+	-webkit-transition: background-color 0.1s ease-out 0s;
+	   -moz-transition: background-color 0.1s ease-out 0s;
+	    -ms-transition: background-color 0.1s ease-out 0s;
+	     -o-transition: background-color 0.1s ease-out 0s;
+	        transition: background-color 0.1s ease-out 0s;
+	
+	//スマートフォン用
+	@media (max-width: 777px) {
+		height: $buttonHeightSp;
+		padding: 0 $buttonPaddingSp;
+		line-height:$buttonHeightSp;
+	}
+	
+	&:hover {
+		color:#FFF;
+		text-decoration: none;
+		opacity: 0.9;
+	}
+
+	&:active { color:#FFF; }
+
+	&.ui-btn-block , .ui-btns-block & {
+		display: block;
+		width: 100%;
+		&.ui-btn-centering {
+			margin: 0 auto;
+			width:260px;
+		}
+	}
+
+	/* ボタンのカラースキーム */
+
+	&.ui-btn-positive {
+		background-color: $btnColorPositive;
+	}
+	
+	&.ui-btn-white {
+		background-color: $btnColorWhite;
+		color: $btnTextColorWhite;
+	}
+
+	&.ui-btn-progress {
+		opacity:0.5;
+	}
+
+	&.ui-btn-bordered {
+		$borderWidth : 1px;
+		background-color: transparent;
+		box-sizing:border-box;
+		line-height: calc(#{$borderWidth * -2 + $buttonHeight});
+		border:$borderWidth solid #FFF;
+		color:#FFF;
+		//スマートフォン用
+		@media (max-width: 777px) {
+			line-height: calc(#{$borderWidth * -2 + $buttonHeightSp});
+		}
+	}
+
+	&.ui-btn-bordered-gray {
+		background-color: transparent;
+		box-sizing:border-box;
+		line-height: calc(#{$buttonHeight} - 4px);
+		border:2px solid #666;
+		color:#666;
+	}
+
+	&.ui-btn-accept {
+		background-color: #449B50;
+	}
+
+	&.ui-btn-fb {
+		background-color: $btnColorFacebook;
+	}
+
+	&:after , &:before {
+		position : relative;
+		top : 0%;
+		display : inline-block;
+		font : normal normal normal 14px/1 FontAwesome;
+		text-rendering : auto;
+		-webkit-font-smoothing : antialiased;
+		-moz-osx-font-smoothing : grayscale;
+		transform : translate(0, 0);
+		font-size : 130%;
+	}
+
+
+	&.ui-btn-fa-left:before , &.ui-btn-fa-right:after{
+		position: absolute;
+		top:50%;
+		height:1em;
+		margin:-0.5em 0;
+	}
+
+	&.ui-btn-fa-left {
+		padding-left : calc(#{$buttonPadding} + 1.0em);
+		&.ui-btn-block {
+			padding : 0 calc(#{$buttonPadding} + 1.0em);
+		}
+		&:before {
+			content: "\f104";
+			left:0.7em;
+		}
+	}
+
+	&.ui-btn-fa-right {
+		padding-right : calc(#{$buttonPadding} + 1.0em);
+		&.ui-btn-block {
+			padding : 0 calc(#{$buttonPadding} + 1.0em);
+		}
+		
+		&:after {
+			content: "\f105";
+			right:0.7em;
+		}
+	}
+
+	&.ui-btn-fa-fb {
+		padding-left:$buttonHeight + $buttonPadding;
+		
+		//スマートフォン用
+		@media (max-width: 777px) {
+			padding-left:$buttonHeightSp+ $buttonPaddingSp;
+		}
+
+	}
+	&.ui-btn-fa-fb:before {
+		content : "\f09a";
+		height : $buttonHeight;
+		width : $buttonHeight;
+		line-height : $buttonHeight;
+		margin-left : ($buttonPadding+$buttonHeight)*-1;
+		border-right: 1px solid $btnColorFacebookBorder;
+		display : block;
+		float : left;
+		font-size : 150%;
+		
+		//スマートフォン用
+		@media (max-width: 777px) {
+			height : $buttonHeightSp;
+			width : $buttonHeightSp;
+			line-height : $buttonHeightSp;
+			margin-left : ($buttonPaddingSp+$buttonHeightSp)*-1;
+		}
+	}
+
+}
+
+/*
+　　ミニボタン
+*/
+.ui-minibtn , .column .ui-minibtn {
+	
+	$buttonHeight : 22px;
+	$buttonPadding : 14px;
+
+	display: inline-block;
+	box-sizing: border-box;
+	height: $buttonHeight;
+	position: relative;
+	
+	border: none;
+	margin: 1px 0;
+	border-radius:$buttonHeight*0.5;
+	padding: 0 $buttonPadding;
+	float: none;
+	
+	background-color: lighten($btnColorDefault,30%);
+	text-align: center;
+	color: #FFF;
+	
+	line-height: $buttonHeight;
+	font-size: 1.2rem;
+	font-weight:normal;
+	
+	-webkit-transition: background-color 0.1s ease-out 0s;
+	   -moz-transition: background-color 0.1s ease-out 0s;
+	    -ms-transition: background-color 0.1s ease-out 0s;
+	     -o-transition: background-color 0.1s ease-out 0s;
+	        transition: background-color 0.1s ease-out 0s;
+			
+	&:after , &:before {
+		position : relative;
+		top : 0%;
+		display : inline-block;
+		font : normal normal normal 14px/1 FontAwesome;
+		text-rendering : auto;
+		-webkit-font-smoothing : antialiased;
+		-moz-osx-font-smoothing : grayscale;
+		transform : translate(0, 0);
+		font-size : 130%;
+	}
+
+
+	&.ui-minibtn-fa-left:before , &.ui-minibtn-fa-right:after{
+		position: absolute;
+		top:50%;
+		height:1em;
+		margin:-0.5em 0;
+	}
+
+	&.ui-minibtn-fa-left {
+		padding-left : calc(#{$buttonPadding} + 1.0em);
+		&.ui-minibtn-block {
+			padding : 0 calc(#{$buttonPadding} + 1.0em);
+		}
+		&:before {
+			content: "\f104";
+			left:0.7em;
+		}
+	}
+
+	&.ui-minibtn-fa-right {
+		padding-right : calc(#{$buttonPadding} + 1.0em);
+		&.ui-minibtn-block {
+			padding : 0 calc(#{$buttonPadding} + 1.0em);
+		}
+		
+		&:after {
+			content: "\f105";
+			right:0.7em;
+		}
+	}
+}
+
+/*
+  フォーム要素
+*/
+
+input {
+
+	.ui-form-input , .ui-form &{
+
+		$height : 42px;
+		display: inline-block;
+		box-sizing: border-box;
+		
+		height: $height ;
+		
+		padding: 0 14px;
+		font-size: 14px;
+		// line-height: 1em;
+		color: #555;
+		background-color: #fff;
+		background-image: none;
+		border: 1px solid #ccc;
+
+		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+		-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+		-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		
+		-webkit-border-radius: 0;
+		        border-radius: 0;
+		
+		&.ui-form-block {
+			display: block;
+			width:100%;
+		}
+		
+		&:focus {
+			border-color: #66afe9;
+			outline: 0;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+		}
+	}
+}
+
+//ul.ui-imageradioを強制。
+
+.ui-imageradio , .ui-imageradio-sp-alt {
+
+	$positive : $accentColor;
+	$deselect : #4d4d4d;
+	$positiveTextColor : #FFF;
+	
+	$sizeLargeScreen : 130px;
+	$borderWidthLargeScreen : 2px;
+	$imagePaddingLargeScreen : 0px;
+	$imageBackgroundColorLargeScreen : #FFF;
+	
+	$sizeSmallScreen : 70px;
+	$imageBackgroundColorSmallScreen : $imageBackgroundColorLargeScreen;
+	$imagePaddingSmallScreen : 0px;
+	$borderWidthSmallScreen : 3px;
+	
+	font-size:13px;
+	user-select: none;
+	line-height:0em;
+	
+	> li {
+		//common
+		display: inline-block;
+		user-select: none;
+		
+		> label {
+			display: block;
+			color:#FFF;
+			transition: background-color 0.2s ease-in-out 0s;
+			position: relative;
+			
+			&:after {
+				//div.image要素の下margin飛び出し対策
+				content: " "; // "" だとコンテンツ高さを取らず。
+				display: block;
+				clear: both;
+				height: 0;
+				overflow: hidden;
+			}
+
+			> div.image {
+				box-sizing:border-box;
+				> img {
+					width:100%;
+					display: block;
+				}
+			}
+
+			> .bottomlabel {
+				display: block;
+				position: absolute;
+				font-family: helvetica,arial,sans-serif;
+				line-height: 1em;
+			}
+		}
+
+		input[type="radio"] {
+			display: none;
+		}
+
+		// default
+		
+		@media (min-width: 778px) {
+
+			width:$sizeLargeScreen;
+			position: relative;
+			
+			input[type="radio"] {
+				&:checked + label {
+					& , & > .bottomlabel {background-color: $positive;}
+					
+					&:hover {
+						& , & > .bottomlabel {
+							background-color: lighten($positive,10%);
+						}
+					}
+				}
+			}
+
+			> label {
+				background-color: $deselect;
+				transition: transform 0.2s ease-in-out 0s;
+				
+				> .bottomlabel {
+					padding: 4px 6px;
+					font-size: 1em;
+					bottom: 0px;
+					right: 0px;
+					background-color: $deselect;
+				}
+
+				&:hover {
+					background-color: lighten($deselect,10%);
+				}
+				
+				&:active {
+					transform: scale(0.98);
+				}
+				
+				> span.title {
+					height: 38px;
+					width:$sizeLargeScreen;
+					display: table-cell;
+					padding:0 3px;
+					vertical-align:middle;
+					font-size: 0.9em;
+					line-height:1.3em;
+					text-align: center;
+					font-weight: bold;
+					box-sizing: border-box;
+				}
+				> div.image {
+					padding: $imagePaddingLargeScreen;
+					background-color: $imageBackgroundColorLargeScreen;
+					margin:0 $borderWidthLargeScreen $borderWidthLargeScreen $borderWidthLargeScreen;
+				}
+			}
+
+		}
+		
+	}
+
+	@media (max-width: 777px) {
+		&:not(.ui-imageradio-sp-alt) > li {
+			width:$sizeSmallScreen;
+			padding-bottom:2em;
+			
+			input[type="radio"] {
+				&:checked + label {
+					& > .bottomlabel {background-color: $positive;}
+					
+					&:hover {
+						& > .bottomlabel {
+							background-color: lighten($positive,10%);
+						}
+
+						& > div.image {
+							border-color:lighten($positive,10%);
+						}
+					}
+				}
+			}
+			
+			> label {
+				position: relative;
+				transition: transform 0.2s ease-in-out 0s;
+				
+
+
+				&:active {
+					transform: scale(0.96);
+				}
+				> div.image {
+					background-color: $imageBackgroundColorSmallScreen;
+					padding:$imagePaddingSmallScreen;
+					border:$borderWidthSmallScreen solid $imageBackgroundColorSmallScreen;
+					transition: border-color 0.2s ease-in-out 0s;
+				}
+				> span.title {
+					position: absolute;
+					top:$sizeSmallScreen+5px;
+					font-size: 0.75em;
+					text-align: center;
+					display: block;
+					width: 100%;
+					transition: background-color 0.2s ease-in-out 0s;
+				}
+				> .bottomlabel {
+					padding: 3px 4px;
+					font-size: 0.8em;
+					bottom: 0px;
+					right: 0px;
+					background-color: $deselect;
+				}
+			}
+
+			input[type="radio"] {
+				&:checked + label {
+					> div.image {
+						border-color : $positive;
+					}
+				}
+			}
+		}
+
+		&.ui-imageradio-sp-alt {
+			li {
+				width: $sizeSmallScreen;
+				input[type="radio"] {
+					&:checked + label {
+						& , & > .bottomlabel {background-color: $positive;}
+						
+						&:hover {
+							& , & > .bottomlabel {
+								background-color: lighten($positive,10%);
+							}
+						}
+					}
+				}
+
+				> label {
+					background-color: $deselect;
+					transition: transform 0.2s ease-in-out 0s;
+					position: relative;
+					
+					> .bottomlabel {
+						padding: 3px 4px;
+						font-size: 0.8em;
+						bottom: 0px;
+						right: 0px;
+						background-color: $deselect;
+					}
+					
+					&:hover {
+						background-color: lighten($deselect,10%);
+					}
+					
+					&:active {
+						transform: scale(0.98);
+					}
+					
+					> span.title {
+						height: 32px;
+						width: $sizeSmallScreen;
+						display: table-cell;
+						vertical-align: middle;
+						font-size: 0.65em;
+						line-height:1.4em;
+						text-align: center;
+						box-sizing: border-box;
+					}
+					> div.image {
+						padding: $imagePaddingLargeScreen;
+						background-color: $imageBackgroundColorLargeScreen;
+						margin:0 $borderWidthLargeScreen $borderWidthLargeScreen $borderWidthLargeScreen;
+					}
+				}
+			}
+
+			&.keeplarge li{
+				width: $sizeSmallScreen * 2;
+				> label {
+					> span.title {
+						height:38px;
+						width: $sizeSmallScreen * 2;
+						font-size:0.9em;
+						font-weight:bold;
+					}
+					> .bottomlabel {
+						font-size:0.9em;
+					}
+				}
+			}
+		}
+
+		
+	}
+
+ 	&.ui-imageradio-small {
+
+		$ratio : 0.67;
+		> li {
+			@media (min-width: 778px) {
+				width:$sizeLargeScreen*$ratio;
+				> label > span.title {
+					width:$sizeLargeScreen*$ratio;
+				}
+			}
+		}
+
+		@media (max-width: 777px) {
+			// &:not(.ui-imageradio-sp-alt) > li {
+			// 	width:$sizeSmallScreen*$ratio;
+				
+			// 	> label {
+			// 		> span.title {
+			// 			top:$sizeSmallScreen*$ratio+5px;
+			// 		}
+			// 	}
+
+			// }
+
+			// &.ui-imageradio-sp-alt {
+			// 	li {
+			// 		width: $sizeSmallScreen*$ratio;
+
+			// 		> label > span.title {
+			// 			width: $sizeSmallScreen*$ratio;
+			// 		}
+			// 	}
+
+			// 	&.keeplarge li{
+			// 		width: $sizeSmallScreen*$ratio * 2;
+			// 		> label > span.title {
+			// 			width: $sizeSmallScreen*$ratio * 2;
+			// 		}
+			// 	}
+			// }
+		}
+ 	}
+	
+}

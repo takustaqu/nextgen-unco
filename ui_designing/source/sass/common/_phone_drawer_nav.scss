@@ -1,0 +1,71 @@
+$h4iconSize : $footerH4Size*0.6;
+$h4iconSizeBorderWidth : 2px;
+
+ul {
+	height:auto;
+	transition: max-height 0.5s ease-out 0s;
+	overflow:hidden;
+	max-height:0;
+	li {
+		transition: opacity 0.3s ease-out 0s;
+		opacity:0;
+	}
+	
+	li {
+		h5{
+			//第2階層の項目のタイトルはH5で。いろいろキャンセルされているので、復元。
+			font-weight:bold;
+			letter-spacing:0.05rem;
+		}
+	}
+	
+	ul {
+		padding-left:4px; //第2階層目のインデント
+	}
+}
+
+
+h4 {
+	position: relative;
+	transform:scale(1);
+	margin-bottom:-8px;
+	transition:margin-bottom 0.5s linear 0s;
+}
+h4:active {
+	transform:scale(0.99);
+}
+h4.active {
+	margin-bottom:0px;
+}
+h4:after , h4:before{
+	width:$h4iconSize ;
+	height:$h4iconSizeBorderWidth;
+	margin:$h4iconSizeBorderWidth*-0.5 $h4iconSize*-0.5;
+	position: absolute;
+	right:1rem;
+	top:50%;
+	content:"";
+	display: block;
+	background-color: #FFF;
+	transition:transform 0.5s cubic-bezier(0.72, 0.11, 0.06, 1.56) 0s;
+}
+h4:before{
+	transform:rotate(90deg)
+}
+
+h4.active:after{
+	transform:rotate(180deg)
+}
+h4.active:before{
+	transform:rotate(360deg)
+}
+
+h4.active+ul{
+	& , & ul {
+		max-height: 24em;
+	}
+	
+	> li , & ul > li {
+		opacity:1;
+	}
+}

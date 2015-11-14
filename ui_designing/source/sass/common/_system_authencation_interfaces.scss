@@ -1,0 +1,321 @@
+
+
+#dynamic-auth {
+	$width : 490px;
+	$inside : 410px;
+	
+	max-width:$width;
+	width:calc(100% - 16px);
+	
+	margin: 0 auto;
+	position: relative;
+	top:-100%;
+	transition: top 0.5s ease-in-out ;
+	
+	a.mini-button {
+		color: #FFF;
+		background-color: #CCC;
+		font-size: 11px;
+		padding: 6px 12px;
+		border-radius: 16px;
+	}
+
+	&.active {
+		
+		top:0;
+	}
+
+	.da-modal {
+		
+		$padding:($width - $inside)*0.5;
+		$elementsGap:$padding * 0.4;
+		
+		background-color: rgba(0,0,0,0.8);
+		z-index:10;
+
+		label {
+			color:#FFF;
+		}
+
+		.da-close {
+			$size : 42px;
+			line-height:$size;
+			width:$size;
+			height:$size;
+			text-align: center;
+			font-size:$size*0.45;
+			color:#FFF;
+			background-color: #4d4d4d;
+			position: absolute;
+			//top:$size*-1 - 6px;
+			top:0;
+			right:0px;
+			display: none;
+			z-index:100;
+			@media (max-width: 777px) {
+				display: block;
+			}
+			
+		}
+
+
+
+		form > input {
+			// $height : 50px;
+			// height:$height;
+			// line-height:$height;
+			margin: $elementsGap 0px;
+		}
+
+		.da-dialog {
+			
+			width:auto;
+			padding:$padding;
+			box-sizing: border-box;
+			max-height:100vh;
+			overflow:scroll;
+			background-color:#FFF;
+			
+
+			h2 {
+				$height : 56px;
+				text-align:center;
+				margin:$padding*-1 $padding*-1 0 $padding*-1;
+				height:$height;
+				line-height: $height;
+				font-size: 165%;
+				
+			}
+
+			@media (max-width: 777px) {
+
+				$paddingSp:$padding*0.5;
+				padding:$paddingSp;
+				
+				h2 {
+					$heightSp : 56px*0.75;
+					text-align:center;
+					margin:$paddingSp*-1 $paddingSp*-1 0 $paddingSp*-1;
+					height:$heightSp;
+					line-height: $heightSp;
+					font-size: 165%;
+					list-style-type: none;
+					
+				}
+			}
+
+			h3 {
+				font-size: 110%;
+				font-weight: bold;
+				padding: 20px 0;
+				text-align: center;
+			}
+			
+			h4.da-form-title , hr {
+				margin:$padding*0.5 0;
+				
+				@media (max-width: 777px) {
+					margin:$padding*0.25 0;
+				}
+			}
+
+			h4.da-form-title {
+				text-align: center;
+				position: relative;
+				font-size: 80%;
+				height:1em;
+				
+				span {
+					display: inline-block;
+					background-color: #FFF;
+					letter-spacing: 0.1em;
+					padding:0 1em;
+					position: relative;
+					z-index:1;
+				}
+				&:after {
+					display: block;
+					content: "";
+					width: 100%;
+					height: 0px;
+					border-bottom: 1px solid #ccc;
+					top: 50%;
+					left: 0;
+					position: absolute;
+				}
+			}
+
+			aside {
+				margin: $elementsGap 0px;
+				text-align:center;
+				font-size:90%;
+			}
+
+			.da-gap {
+				margin: $elementsGap 0px;
+			}
+
+			&.da-regist h2 {
+				$bgColor :#4c4c4c;
+				background-color: $bgColor;
+				color:#FFF;
+				position: relative;
+				
+				&:after {
+					$size : 10px;
+					content:"";
+					display: block;
+					width:0px;
+					margin:0 $size*-0.5;
+					border:$size*0.5 solid;
+					position:absolute;
+					left:50%;bottom:$size *-1;
+					border-color:$bgColor transparent transparent transparent;
+				}
+			}
+
+			&.da-login h2 {
+				height: 84px;
+	    		line-height: 84px;
+	    		font-weight:bold;
+	    		color:$defaultGrayColor;
+	    		
+	    		@media (max-width: 777px) {
+					height: 64px;
+					line-height: 64px;
+	    		}
+			}
+
+
+			.da-dialog-center {
+				text-align:center;
+			}
+			.da-dialog-right {
+				text-align:right;
+			}
+		}
+		
+
+		.da-regist {display: none;}
+		.da-login {display: block;}
+		
+		.da-login-mode{
+			.da-regist {display: none;}
+			.da-login {display: block;}
+		}
+	}
+
+}
+
+#da-notifier {
+	width:100%;
+	height:100%;
+	position: absolute;
+	left:0;
+	top:0;
+	background-color: rgba(210,210,210,0.8);
+	z-index:10;
+	display: none;
+	
+	&.active {
+		display: block;
+	}
+	
+	.da-baloon {
+		$size : 180px;
+		text-align: center;
+		position: absolute;
+		top:50%;
+		left:50%;
+		width:$size;
+		height:$size;
+		margin: $size*-0.5;
+		background-color: #FFF;
+		border-radius: 8px;
+		box-shadow: 0 0 32px rgba(0,0,0,0.02);
+		display: none;
+		
+		&.active {
+			display: block;
+		}
+		background-size: contain;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+
+	.da-notifier-login-progress {
+		background-image:url('/images/system/auth/loading.gif'),url('/images/system/auth/login-progress.png');
+		background-size:32px,contain;
+	}
+	.da-notifier-login-done {
+		background-image:url('/images/system/auth/login-done.png')
+	}
+	.da-notifier-login-fail {
+		background-image:url('/images/system/auth/login-fail.png')
+	}
+	.da-notifier-regist-progress {
+		background-image:url('/images/system/auth/loading.gif'),url('/images/system/auth/regist-progress.png');
+		background-size:32px,contain;
+	}
+	.da-notifier-regist-done {
+		background-image:url('/images/system/auth/regist-done.png')
+	}
+	.da-notifier-regist-already {
+		// background-image:url('/images/system/auth/regist-exist.png')
+		background-image:url('/images/system/auth/regist-fail.png')
+	}
+	.da-notifier-regist-fail {
+		background-image:url('/images/system/auth/regist-fail.png')
+	}
+	.da-notifier-facebook {
+		background-image:url('/images/system/auth/login-facebook.png')
+	}
+
+
+}
+
+.da-shade {
+	position: fixed;
+	display: none;
+	top:0;left:0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+}
+
+
+// for bootstrap-version {
+	#index-header-nav div#header-top ul#top-nav{
+		> li.nav-logged-in {display: none;}
+		> li.nav-logged-out {display: inline-block;}
+
+		body.logged-in & {
+			> li.nav-logged-out {display: none;}
+			> li.nav-logged-in {display: inline-block;}	
+		}
+	}
+
+	#sidr{
+		.nav-sidr-logged-in {display: none;}
+		.nav-sidr-logged-out {display: block;}
+
+		body.logged-in & {
+			.nav-sidr-logged-out {display: none;}
+			.nav-sidr-logged-in {display: block;}	
+		}
+	}
+
+	@media (max-width: 949px) {
+
+		#header-top #top-nav {
+			right: 0px!important;
+		}
+
+		#index-header-nav div#header-top ul#top-nav li{
+			display: none!important;
+			&.nav-cart {
+				display: block!important;
+			}
+		}
+	}
+// } for bootstrap version

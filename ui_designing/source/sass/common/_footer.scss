@@ -1,0 +1,221 @@
+	$footerH4InnerPadding:($footerH4LineHeight - $footerH4Size)*0.5;
+	$footerLiInnerPadding:($footerGlobalNavLineHeight - $footerGlobalNavLiFontSize)*0.5;
+
+#footer-global , #sidenav-lists {
+	clear: both;
+	letter-spacing: -.40em;
+	color: #fff;
+	background-color: $colorDarkGray;
+	padding-top:$footerPadding - $footerH4InnerPadding;
+	
+	@media (max-width: #{$displayPhone}){
+		padding-top:$defaultScreenPadding;
+	}
+	
+	a , h4 {
+		letter-spacing: normal;
+	}
+	a {
+		color: #fff;
+	}
+	section > a , h4 {
+		font-size: $footerH4Size;
+		line-height: $footerH4LineHeight;
+		height: $footerH4LineHeight;
+		letter-spacing:0.04rem;
+		font-family:$enSansFontFamily;
+		display:block;
+		
+		@media (max-width: #{$displayPhone}){
+			border-bottom:1px solid $colorDarkGrayDivider;
+			padding:4px 0;
+			font-weight:500;
+			
+		}
+	}
+	small {
+		font-size: 85%;
+	}
+}
+
+
+
+#footer-global-sitemap > section,
+#footer-global-sitemap > .fallback-ie9-col > section ,
+#footer-global-socialmedia,
+#footer-copy {
+	letter-spacing: normal;
+}
+
+//サイトマップとソーシャルメディアの上下のpadding
+#footer-global-sitemap,
+#footer-global-socialmedia {
+	padding: 0 0 $footerPadding*0.3 0;
+	
+	@media (max-width: #{$displayPhone}){
+		padding: 0 0 $footerPadding*0.24 0;	
+	}
+}
+
+//サイトマップとソーシャルメディア内部のline-height
+#footer-global-socialmedia,
+#footer-global-sitemap > section > ul,
+#footer-global-sitemap > .fallback-ie9-col > section > ul ,
+#sidenav-lists ul{
+	& , & ul {
+		line-height: $footerGlobalNavLineHeight;
+	}
+	
+	& ul {
+		padding:0;
+	}
+}
+
+
+//SNSアイコン
+#footer-global-socialmedia {
+	$iconSize : 50px;
+	ul {
+		letter-spacing: -.40em;
+		padding-top:$footerH4InnerPadding + $footerLiInnerPadding;
+		}
+	li {
+		letter-spacing: normal;
+		width: $iconSize;
+		height: $iconSize;
+		
+		display: inline-block;
+		margin: 0 10px 10px 0;
+		a {
+			color: #A7A7A7;
+			background-color: #5d5d5d;
+			text-align: center;
+			display: block;
+			width: $iconSize;
+			height: $iconSize;
+			line-height: $iconSize;
+			
+			&:hover {
+				background-color: #666;
+				text-decoration:none;
+			}
+			
+			&:before {
+				font-family: 'FontAwesome';
+				font-size:2.11rem;
+			}
+			&.fb:before {
+				content: "\f09a";
+			}
+			&.tw:before {
+				content: "\f099";
+			}
+			&.in:before {
+				content: "\f16d";
+			}
+			> span {display: none;}
+		}
+	}
+	
+	@media (max-width: #{$displayPhone}){
+		li {
+			width: $iconSize*0.8;
+			height: $iconSize*0.8;
+			a {
+				width: $iconSize*0.8;
+				height: $iconSize*0.8;
+				line-height: $iconSize*0.8;
+			}
+		}
+
+		h4 { border-bottom:none; }
+	}
+
+}
+
+#footer-global-sitemap {
+	column-count:3;
+	html:not(.csscolumns) & {
+		position: relative;
+	}
+	
+	> section , .fallback-ie9-col > section {
+		display: inline-block;
+		width:100%;
+	}
+
+	.no-csscolumns & .fallback-ie9-col {
+		display: block;
+		float:left;
+		width:33.333%;
+	}
+	
+	@media (min-width: #{$displayPhone + 1px}){
+		max-height:260px;
+	}
+
+	@media (max-width: #{$displayPhone}){
+		column-count:1;
+		@import '_phone_drawer_nav';
+	}
+}
+
+#footer-global-sitemap , #sidenav-lists {
+	ul {
+		$paddingTop : $footerH4BottomMargin - ($footerLiInnerPadding + $footerH4InnerPadding);
+		$paddingBottom : $footerGlobalNavUnitBottomMargin - ($footerLiInnerPadding + $footerH4InnerPadding);
+		padding : $paddingTop 0 $paddingBottom 0;
+		> li {
+			font-size : $footerGlobalNavLiFontSize;
+			&:last-child {
+				margin-bottom:12px;
+			}	
+		}
+		
+	}
+
+	li > a {
+		display: block;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		color:#AAA;
+		font-family:$jaSansFontFamilyNavs;
+	}
+}
+
+
+//コピーライト表示
+#footer-copy {
+	height:$footerBarHeight;
+	// line-height:$footerBarHeight;
+	background-color: #333;
+	.logo {
+		width:140px;
+		height:50px;
+		margin:2.5px 0;
+		display: inline-block;
+		img {max-width:100%;opacity:0.5;}
+	}
+	small {
+		float:right;
+		display: block;
+		font-family: $enSansFontFamily;
+		height:$footerBarHeight;
+		line-height:$footerBarHeight;
+		color:#888;
+	}
+
+	@media (max-width: #{$displayPhone}){
+		height:auto;
+		text-align: center;
+		padding:25px 0 30px 0;
+		small {
+			background-color: transparent;
+			float:none;
+			height:1.5em;
+			line-height:1.5em;
+		}
+	}
+}
+

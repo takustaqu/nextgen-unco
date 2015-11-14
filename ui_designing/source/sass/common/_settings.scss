@@ -1,0 +1,67 @@
+	$imageOrigin : "/images/style/";
+
+
+//基本色
+	$colorBody:#f3f3f3; //body領域の背景色
+	
+	$colorPrimary: #e75c59; //サイト上部などに使われるキーカラー
+	$colorLightGray: #f3f3f3; //グローバルナビ上部のグレーエリアなどの明灰色
+	$colorHeaderBar:#FFF;
+	$colorDarkGray: #4d4d4d; //フッターナビの背景などの濃灰色
+	$colorDarkGrayDivider: #5d5d5d; //フッターナビ内部の仕切り線色
+	$colorSideDrawer:$colorDarkGray; //htmlの背景色(スマートフォンのサイドバーナビ色)
+	$colorContentsLink :#337ab7;
+	
+//要素の色
+	$textLinkGray: #5d5d5d; //テキストリンク色(グレー)
+
+/* #### 要素のスクリーン上のサイズ #### */
+	$headerBarHeight: 50px; //ヘッダーグレー部の高さ
+	$footerBarHeight: 55px; //フッター最下部の高さ
+	$globalNavHeight: 40px;
+	$defaultTextColor: #333; //デフォルトテキスト
+	$defaultScreenPadding : 15px; //レイアウト両端のpadding
+	$smartphoneHeaderSize : 50px; //スマートフォンのヘッダの高さ
+	$smartphoneHandleSize : 16px; //スマートフォン用ナビゲーションのハンドル
+	$smartphoneHeaderIconTouchSize :38px ; //スマートフォン用グローバルヘッダのアイコンのタッチサイズ
+	
+	$footerPadding : 3.0rem;
+	$footerH4Size : 1.56rem;
+	$footerH4LineHeight: 2.8rem;
+	$footerH4BottomMargin : 2.0rem;
+	$footerGlobalNavLiFontSize : 1.25rem;
+	$footerGlobalNavLineHeight : 2.67rem;
+	$footerGlobalNavUnitBottomMargin : 2.0rem;
+
+/*
+ 基本変数群
+*/
+	$defaultGrayColor:$colorDarkGray;
+	$accentColor :$colorPrimary;
+	$btnColorDefault : #5d5d5d;
+	$btnColorPositive : $colorPrimary;
+	$btnColorNegative : $colorDarkGray;
+	$btnColorWhite : #FFF;
+	$btnTextColorWhite : #333;
+	
+	$cartBadgeColor : $colorPrimary;//カートアイコンのバッジ色
+
+/* #### スクリーンサイズ #### */
+	$displayNarrow : 950px; //幅狭
+	$displayPhone : 750px; //スマートフォン
+
+/* #### スクリーンのブレークポイント #### */
+	$globalNavBreakpoint : $displayNarrow - 1px;
+	$smartphoneWidthLandscape : 480px; //スマートフォン:ランドスケープのブレークポイント
+
+/* プロパティ */
+	$borderSmartphoneDarkNav: 1px solid $colorDarkGrayDivider; //スマートフォン用Navの境界線
+
+/* #### フォント ####*/
+
+	$enSansFontFamily: Roboto,Helvetica,Arial,sans-serif; //英字表記前提のUI要素
+	$jaSansFontFamily: 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+						/* -> 追加候補：　游ゴシック体, 'Yu Gothic', YuGothic,*/
+	$jaSansFontFamilyNavs:$enSansFontFamily,$jaSansFontFamily;
+	$enHeadingsFamily: lato , Helvetica , Arial , sans-serif;
+	$futura : futura , texgyreadventor , sans-serif;
