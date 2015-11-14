@@ -42,7 +42,8 @@ gulp.task("style", function() {
 //copy
 gulp.task("js", function() {
     return gulp.src(DEV + "/js/**/*.js")
-        .pipe(gulp.dest(PUBLIC + "/js"));
+        .pipe(gulp.dest(PUBLIC + "/js"))
+        .pipe(browser.reload({stream:true}));
 });
 
 //lib
