@@ -1,0 +1,4 @@
+node_modules/
+credentials.json
+credentials_develop.json
+credentials_release.json
