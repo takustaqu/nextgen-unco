@@ -277,7 +277,39 @@ p.description {
 		.review-counts {
 			float:right;
 		}
+	}
+}
 
+.toilet-finder {
+
+	li {
+		display: block;
+		background-color: #FFF;
+		
+		&{
+			background-color: #ccc;
+		}
+
+		&.allow{
+		 	background-color: green;
+		}
+
+		&.ban{
+		 	background-color: red;
+		}
 
 	}
+	.status {
+		text-align:center;
+		font-size:4.0rem;
+		font-weight:bold;
+		line-height:72px;
+		color:#fff;
+		text-shadow:0 0 2px rgba(0,0,0,0.5);
+	}
+
+	.detail {
+		background-color: rgba(255,255,255,0.5);
+	}
+
 }
