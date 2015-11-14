@@ -1,0 +1,93 @@
+[
+    {
+        "id": "00000",
+        "name": "サンプルトイレ1",
+        "image": [
+            {
+                "uri": "/images/spherical.jpg",
+                "sperical": true
+            }
+        ],
+        "thumbnail": "/images/sampletoilet.jpg",
+        "lat": [
+            111.1111111,
+            11111.2222222
+        ],
+        "ownerId": 22212,
+        "using": false,
+        "price": 900,
+        "reviewOverview": {
+            "rateAverage": 4.821,
+            "rateCount": 10,
+            "reviewCount": 10
+        }
+    },
+    {
+        "id": "00000",
+        "name": "サンプルトイレ2",
+        "image": [
+            {
+                "uri": "/images/spherical.jpg",
+                "sperical": true
+            }
+        ],
+        "thumbnail": "/images/sampletoilet.jpg",
+        "lat": [
+            111.1111111,
+            11111.2222222
+        ],
+        "ownerId": 22212,
+        "using": false,
+        "reviewOverview": {
+            "rateAverage": 3.221,
+            "rateCount": 12,
+            "reviewCount": 19
+        }
+    },
+    {
+        "id": "00000",
+        "name": "サンプルトイレ3",
+        "image": [
+            {
+                "uri": "/images/spherical.jpg",
+                "sperical": true
+            }
+        ],
+        "thumbnail": "/images/sampletoilet.jpg",
+        "lat": [
+            111.1111111,
+            11111.2222222
+        ],
+        "ownerId": 22212,
+        "using": false,
+        "price": 0,
+        "reviewOverview": {
+            "rateAverage": 1.821,
+            "rateCount": 0,
+            "reviewCount": 10
+        }
+    },
+    {
+        "id": "00000",
+        "name": "サンプルトイレ3",
+        "image": [
+            {
+                "uri": "/images/spherical.jpg",
+                "sperical": true
+            }
+        ],
+        "thumbnail": "/images/sampletoilet.jpg",
+        "lat": [
+            111.1111111,
+            11111.2222222
+        ],
+        "ownerId": 22212,
+        "using": false,
+        "price": 100,
+        "reviewOverview": {
+            "rateAverage": 1.821,
+            "rateCount": 0,
+            "reviewCount": 10
+        }
+    }
+]

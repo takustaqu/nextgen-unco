@@ -1,0 +1,39 @@
+{
+    "id": "00000",
+    "name": "トイレの名前",
+    "description": "トイレの概要 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "image": [
+        {
+            "uri": "http://---------",
+            "sperical": true
+        }
+    ],
+    "thumbnail": "http://",
+    "lat": [
+        35.617108,
+        139.780641
+    ],
+    "ownerId": 1,
+    "using": false,
+    "price": 900,
+    "reviewOverview": {
+        "rateAverage": 4.821,
+        "rateCount": 10,
+        "reviewCount": 10
+    },
+    "review": [
+        {
+            "comment": "今までにない斬新なトイレだと思う。ウォシュレットは今やスタンダードだと言えるが、これと和式便所との組み合わせは未だ実現できていないものだとおもっていた。便器は大手メーカーじゃなくても作れる。これを体現するようなトイレだ。オーナーさんも暖かくてステキである。",
+            "rate": 4,
+            "userid": 0
+        },
+        {
+            "comment": "変わり続ける事、これがよしとされる世の中なのであれば、これはまさにそれであろう。現代に於ける新たなるサグラダファミリアの誕生である。もうヘビロテ決定です。",
+            "rate": 4.5,
+            "userid": 0
+        },
+        {
+            "rate": 5
+        }
+    ]
+}

@@ -74,8 +74,8 @@ _tool = {
 		var reviews = (function(){
 				var tmp = "";
 				for(var i=0,il=obj.review.length;i<il;i++){
-					if (!obj.review[i].review) continue;
-					tmp += '<li><div class="review"><div class="user"><div class="icon"><img src="/images/usericonsample.jpg" alt=""></div><div class="name">トイレマン</div></div><div class="detail"><p>'+obj.review[i].review+'</p><div class="review-counts">'+_tool.createStar(obj.review[i].rate)+'</div></div></div></li>';
+					if (!obj.review[i].comment) continue;
+					tmp += '<li><div class="review"><div class="user"><div class="icon"><img src="/images/usericonsample.jpg" alt=""></div><div class="name">トイレマン</div></div><div class="detail"><p>'+obj.review[i].comment+'</p><div class="review-counts">'+_tool.createStar(obj.review[i].rate)+'</div></div></div></li>';
 				}
 
 				if(!!tmp){
