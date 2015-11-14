@@ -6,21 +6,17 @@
 <% include elements/_header %>
 
 
-<header id="welcome-message">
-	<h1>Welcome, Username</h1>
+<header id="welcome-message" class="">
+	<h1>Welcome</h1>
 	<div class="header-info">
 		There are 100 of toilet around 1km from you.
 	</div>
-
 	<div class="bg">
-		<img src="#" alt="" style="background-image:url(http://maps.googleapis.com/maps/api/streetview?size=960x480&amp;location=35.666087999999995,139.73195339999998&amp;heading=235&amp;sensor=false);">
+		<img src="#" >
 	</div>
-
 	<div id="open-userpage">
-		<a href="#"><i class="fa fa-user"></i> USERNAME</a>	
+		<a href="#"><i class="fa fa-user"></i> --</a>	
 	</div>
-	
-
 </header>
 <div class="sections">
 	<section>
@@ -81,11 +77,42 @@
 
 <!-- end contents -->
 <% include elements/_footer %>
-
+<script type="text/javascript" src="http://maps.google.com/maps?file=api&v=2.x&key=AIzaSyC106nTqtZDiQfmoaVKVOCNk0jHW7lPPTc"></script>
 
 <script>
 
 window.onload = function(){
+	var client = new GStreetviewClient();
+	_tool.refreshGeolocation(function(){
+
+		$.ajax({
+		    url: "http://api.airwn.co/api/get_user_detail?id=1",
+		    dataType: "JSON",
+		    cache: false,
+		    success: function(data, textStatus){
+				//この関数に引き渡したらばーん
+
+				$("#welcome-message h1").text("Welcome,"+data.username+".");
+				
+				$("#open-userpage a").attr("href","/mypage.html?id="+data.id).html('<i class="fa fa-user"></i> '+data.username);
+					var slatlng = 
+					client.getNearestPanoramaLatLng(new GLatLng(geolocation.result.coords.latitude , geolocation.result.coords.longitude), setImage);
+
+					function setImage(latlng){
+					  
+					  $("#welcome-message .bg img").css("background-image",'url(http://maps.googleapis.com/maps/api/streetview?size=960x480&amp;location='+latlng.lat()+','+latlng.lng()+'&amp;heading=235&amp;sensor=false)');
+					}
+
+				$("#welcome-message").removeClass("pending").addClass("ready");
+
+		    },
+		    error: function(xhr, textStatus, errorThrown){
+		    	console.log("failed",xhr, textStatus, errorThrown)
+		      return false;
+		    }
+		  });
+		
+	});
 
   $.ajax({
     url: "http://api.airwn.co/api/get_toilets",

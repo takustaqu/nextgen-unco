@@ -34,7 +34,7 @@
 window.onload = function(){
 
   $.ajax({
-	url: "http://api.airwn.co/api/get_toilet_detail.json?id=8",
+	url: "http://api.airwn.co/api/get_toilet_detail.json" + window.location.search,
 	dataType: "JSON",
 	cache: false,
 	success: function(data, textStatus){
