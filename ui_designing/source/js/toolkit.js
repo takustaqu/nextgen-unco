@@ -1,4 +1,37 @@
 
+var Geokit = function(callback) {
+    this.status = undefined;
+    this.result = false;
+    return false;
+}
+
+Geokit.prototype.done = function(pos) {
+this.status = "success";
+console.log(this.status, this);
+console.log("done:", pos, status);
+this.result = pos;
+}
+
+Geokit.prototype.fail = function(a) {
+	this.status = false;
+	alert("airwncはGPS情報を必要とします。このメッセージが表示された場合、リロードして位置情報を許可して下さい。")
+}
+
+Geokit.prototype.get = function(callback,failedCallback) {
+var $this = this;
+navigator.geolocation.getCurrentPosition(
+  function(pos) {
+    $this.done(pos);
+    if(!!callback) callback.call(this);
+  },
+  function(pos) {
+    $this.fail(pos);console.log("failed");
+   failedCallback.call(this);
+  });
+}
+
+var geolocation = new Geokit();
+
 _tool = {
 	separateComma : function(num){return String(num).replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');},
 	createStar : function(rate){
@@ -27,7 +60,8 @@ _tool = {
 			return '<span class="count">'+Math.floor(rate)+'</span>';
 		},
 	callToiletDetail: function(id,opt){
-		console.log("トイレ詳細呼び出し:",id);
+		//console.log("トイレ詳細呼び出し:",id);
+		window.location = '/toilet_detail.html';
 	},
 	createToiletCell:function(obj){
 		var price = !!obj.price ? '<div class="price">&yen;'+_tool.separateComma(parseInt(obj.price))+'</div>' : "";
@@ -56,7 +90,7 @@ _tool = {
 
 		//配列からガシガシばーんと生成。
 		for(var i=0,il=toilets.length;i<il;i++){
-			console.log(toilets[i])
+			//console.log(toilets[i])
 			$list.append(_tool.createToiletCell(toilets[i]));
 		}
 	},
@@ -108,5 +142,37 @@ _tool = {
 			'<li><strong>Email</strong><span>'+obj.email+'</span></li>'+
 			'<li><strong>PhoneNumber</strong><span>'+obj.phone+'</span></li>');
 
+	},
+	switchPanicMode : function(){
+		$("body").addClass("panic-mode");
+		_tool.refreshGeolocation(function(){
+			$("#panicmode-toilets").slideDown();
+			$("#nearby-toilets").slideUp();
+		});
+	},
+	refreshGeolocation : function(callback){
+		$("#geolocating").fadeIn();
+		geolocation.get(function(){
+			if(!!callback) callback.call(this);
+			$("#geolocating").fadeOut();
+		})
 	}
 }
+
+
+if(!!window.location.pathname.match("/home") && !!window.location.search.match("panic")){
+	_tool.switchPanicMode();
+}
+
+$("#panic-button").on({"click":function(){
+	if(!!window.location.pathname.match("/home")){
+		_tool.switchPanicMode();
+	}else{
+		if(window.location.port == "5000"){
+			window.location.href = "/home.html?panic"	
+		}else{
+			window.location.href = "/home?panic"
+		}
+		
+	}
+}})

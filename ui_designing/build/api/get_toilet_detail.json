@@ -4,11 +4,11 @@
     "description": "トイレの概要 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "image": [
         {
-            "uri": "http://---------",
+            "uri": "/images/sampletoilet.jpg",
             "sperical": true
         }
     ],
-    "thumbnail": "http://",
+    "thumbnail": "/images/sampletoilet.jpg",
     "lat": [
         35.617108,
         139.780641

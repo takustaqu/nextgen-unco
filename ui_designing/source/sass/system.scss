@@ -480,17 +480,24 @@ p.description {
 }
 
 .toilet-finder {
-
+	margin : 0 -8px -8px -8px;
 	> li {
 		display: block;
 		background-color: #FFF;
-		
+		&:after {
+			content:"";
+			display: block;
+			clear:both;
+		}
 		&{
 			background-color: #ccc;
 		}
 
 		&.allow{
 		 	background-color: green;
+		 	.detail {
+		 		padding:8px;
+		 	}
 		}
 
 		&.ban{
@@ -507,8 +514,60 @@ p.description {
 	}
 
 	.detail {
-		background-color: rgb(255,255,255);
-		padding:0;
+		background-color: #005800;
+		color:#FFF;
+		
+		&:after {
+			content:"";
+			display: block;
+			clear:both;
+		}
+		
+		@media (max-width:#{$displayPhone}){
+			> ul {
+				margin:1em;
+				box-sizing:border-box;
+				width:95%;
+			}
+
+			.profile>li>span, .profile>li>div, .toilet-detail>li>span, .toilet-detail>li>div {
+				margin-bottom:1.2em;
+			}
+		}
+		.thumbnail ,
+		.data {
+			float:left;
+		}
+		.thumbnail {
+			width:72px;
+			height:72px;
+			display: block;
+			box-sizing:border-box;
+			border:1px solid #FFF;
+			img {
+				max-width:100%;
+			}
+		}
+
+		.price {
+			position: absolute;
+			top:0;left:0;
+		}
+
+		.data {
+			box-sizing:border-box;
+			width:calc(100% - 72px);
+			padding:8px 8px ;
+			.review-counts .count{
+				background-color: #FFF;
+			}
+		}
+
+		.buttons {
+			clear: both;
+			text-align: center;
+			padding: 8px 0 0 0;
+		}
 	}
 
 	
@@ -572,6 +631,10 @@ p.description {
 		}
 	}
 
+}
+
+#panicmode-toilets {
+	display: none;
 }
 
 #open-userpage {
