@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-  <Response>
-    <Gather action="http://api.airwn.co/response.xml" method="GET" timeout="10" numDigits="1">
-      <Say voice="alice" language="ja-jp">緊急です。近くでトイレを貸して欲しがっている人がいます。貸してあげても良い場合は、1を押してください。</Say>
-    </Gather>
-    <Say voice="alice" language="ja-jp">タイムアウトしました。</Say>
-  </Response>

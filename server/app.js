@@ -6,6 +6,12 @@ var io = require('socket.io')(server);
 var credentials = require('./credentials.json');
 var db = require('./db');
 var router = express.Router();
+var session = require('express-session')({
+  secret: 'my-secret',
+  resave: true,
+  saveUninitialized: true
+});
+var sharedsession = require('express-socket.io-session');
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/../ui_designing/source/ejs');
@@ -23,6 +29,8 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
+// Use express-session middleware for express
+app.use(session);
 app.use(router);
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/../ui_designing/build'));
@@ -94,7 +102,7 @@ router.get('/api/get_toilets.:format?', function(req, res, next) {
 
   // TODO
   if (alert == '1') {
-    executeCall(function(err, result) {
+    executeCall(req.session.id, '8', function(err, result) {
       console.log(err, result);
     });
   }
@@ -217,7 +225,7 @@ router.get('/api/request_toilet_use.:format?', function(req, res, next) {
 router.get('/call', function(req, res, next) {
 
   // 電話をかける
-  executeCall(function(err, result) {
+  executeCall(req.session.id, '8', function(err, result) {
     if (err) {
       next(err);
     } else {
@@ -226,20 +234,32 @@ router.get('/call', function(req, res, next) {
   });
 });
 
+router.get('/api/twilio/:callerSessionId/:toiletId', function(req, res) {
+  var callerSessionId = req.params.callerSessionId;
+  var toiletId = req.params.toiletId;
+  res.set('Content-Type', 'text/xml');
+  res.send('<?xml version="1.0" encoding="UTF-8"?>\n<Response>\n<Gather action="http://api.airwn.co/api/response/' + callerSessionId + '/' + toiletId + '" method="GET" timeout="10" numDigits="1">\n<Say voice="alice" language="ja-jp">緊急です。近くでトイレを貸して欲しがっている人がいます。貸してあげても良い場合は、1を押してください。</Say>\n</Gather>\n<Say voice="alice" language="ja-jp">タイムアウトしました。</Say>\n</Response>');
+});
+
 // ユーザーが応答したら呼ばれる
-router.get('/response.xml', function(req, res) {
+router.get('/api/response/:callerSessionId/:toiletId', function(req, res) {
+
+  var callerSessionId = req.params.callerSessionId;
+  var toiletId = req.params.toiletId;
+
   res.set('Content-Type', 'text/xml');
   res.send('<?xml version="1.0" encoding="UTF-8"?>\n<Response><Say voice="alice" language="ja-jp">ありがとうございました。</Say></Response>');
 
-  // TODO トイレ許可
-  if (req.query.Digits === '1') {
-    io.sockets.emit('toiletFound', '0001');
-  }
+  // トイレ許可・拒否の返答
+  io.to(callerSessionId).emit('toiletResponse', {
+    ok: req.query.Digits === '1',
+    id: toiletId
+  });
 });
 
 server.listen(80);
 
-function executeCall(callback) {
+function executeCall(callerSessionId, toiletId, callback) {
 
   // Twilio Credentials 
   var accountSid = credentials.twilio.accountSid;
@@ -251,7 +271,7 @@ function executeCall(callback) {
   client.calls.create({
     to: "+818020314368",
     from: credentials.twilio.from,
-    applicationSid: credentials.twilio.applicationSid,
+    url: 'http://api.airwn.co/twilio/' + callerSessionId + '/' + toiletId,
     method: "GET",
     fallbackMethod: "GET",
     statusCallbackMethod: "GET",
@@ -260,9 +280,13 @@ function executeCall(callback) {
 
 }
 
+// Use shared session middleware for socket.io
+// setting autoSave:true
+io.use(sharedsession(session, {
+  autoSave: true
+}));
 
 io.on('connection', function(socket) {
-  // socket.emit('news', {
-  //   hello: 'world'
-  // });
+  socket.join(socket.handshake.session.id)
+  console.log('Session ID ' + socket.handshake.session.id);
 });
