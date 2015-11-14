@@ -5,9 +5,9 @@
 $btnColorFacebook : #3e6eaf ;
 $btnColorFacebookBorder : #3460a1 ;
 
-.ui-btn , .column .ui-btn {
+a.ui-btn , .column .ui-btn {
 	
-	$buttonHeight : 50px;
+	$buttonHeight : 40px;
 	$buttonPadding : 20px;
 	
 	$buttonHeightSp : $buttonHeight*0.84; //42pxの近似値に
@@ -17,15 +17,16 @@ $btnColorFacebookBorder : #3460a1 ;
 	box-sizing: border-box;
 	height: $buttonHeight;
 	position: relative;
+	border-radius:8px;
 	
-	border: none;
+	border-bottom: 2px solid darken($btnColorDefault,10%);
 	margin: 1px 0;
 	padding: 0 $buttonPadding;
 	float: none;
 	
 	background-color: $btnColorDefault;
 	text-align: center;
-	color: #FFF;
+	color:#fff;
 	
 	line-height: $buttonHeight;
 	font-size: 1.3rem;

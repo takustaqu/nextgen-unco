@@ -134,11 +134,11 @@ hr {
 }
 
 
-.profile {
+.profile , .toilet-detail {
 	display: table;
 	width:100%;
-	li {
-		display:table-row;
+	> li {
+		display:table-row!important;
 		> span , > strong , > div {
 			display:table-cell;
 			padding:16px 0;
@@ -154,6 +154,9 @@ hr {
 		}
 		> span , > div {
 			padding-left:1.5em;
+			padding-right:1.5em;
+			box-sizing:border-box;
+			width:calc(100% - 120px);
 		}
 	}
 }
