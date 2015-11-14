@@ -86,47 +86,48 @@
 				top:$arrowSize * -2 ;
 				right:50%;
 			}
-
-			.review {
-				.star {
-					color:orange;
-					text-shadow:0 1px 0 rgba(0,0,0,0.1) ;
-				}
-				.count {
-					$color : #DDD;
-					$borderColor : $color;
-					$borderSize:1px;
-					color:darken($color,40%);
-					display: inline-block;
-					border:$borderSize solid $borderColor;border-radius:3px;
-					position: relative;
-					font-size:1.2rem;
-					padding:3px 6px;
-					line-height:1em;
-					$miniArrowSize:4px;
-					margin-left:2px + $miniArrowSize;
-					margin-right:0.5em;
-					
-					&:after,&:before {
-						content:"";
-						border:$miniArrowSize solid $boxColor;
-						margin:$miniArrowSize*-1 0;
-					}
-					&:before {
-						border-color:transparent $borderColor transparent transparent;
-						position: absolute;
-						left:$miniArrowSize * -2 - $borderSize;
-						top:50%;
-					}
-					&:after {
-						border-color:transparent $boxColor transparent transparent;
-						position: absolute;
-						left:$miniArrowSize * -2 + 1px;
-						top:50%;
-					}
-				}
-			}
 		}		
+	}
+}
+
+.review-counts {
+	$boxColor:#FFF;
+	.star {
+		color:orange;
+		text-shadow:0 1px 0 rgba(0,0,0,0.1) ;
+	}
+	.count {
+		$color : #DDD;
+		$borderColor : $color;
+		$borderSize:1px;
+		color:darken($color,40%);
+		display: inline-block;
+		border:$borderSize solid $borderColor;border-radius:3px;
+		position: relative;
+		font-size:1.2rem;
+		padding:3px 6px;
+		line-height:1em;
+		$miniArrowSize:4px;
+		margin-left:2px + $miniArrowSize;
+		margin-right:0.5em;
+		
+		&:after,&:before {
+			content:"";
+			border:$miniArrowSize solid $boxColor;
+			margin:$miniArrowSize*-1 0;
+		}
+		&:before {
+			border-color:transparent $borderColor transparent transparent;
+			position: absolute;
+			left:$miniArrowSize * -2 - $borderSize;
+			top:50%;
+		}
+		&:after {
+			border-color:transparent $boxColor transparent transparent;
+			position: absolute;
+			left:$miniArrowSize * -2 + 1px;
+			top:50%;
+		}
 	}
 }
 
@@ -180,5 +181,91 @@ p.description {
 		margin: 0 16px;
 		background-color: #EEE;
 		border-radius:8px;
+	}
+}
+
+.reviews {
+	li {
+		border-bottom:1px solid #EEE;
+		padding:16px 0;
+	}
+	li > .review {
+		$userSize : 130px;
+		
+		&:after {
+			content:"";
+			display: block;
+			clear:both;
+		}
+		> .user , > .detail {
+			display: block;
+			float:left;
+		}
+		> .user {
+			width:$userSize;
+			text-align:center;
+			.icon {
+				img {
+				max-width:100%;
+				border-radius:8px;
+				border:2px solid $colorPrimary;
+				}
+			}
+			box-sizing:border-box;
+			padding-right:1.5em;
+			
+			.name {
+				font-size:1.1rem;
+				line-height:1em;
+				display:inline-block;
+				padding:6px 8px;
+				background-color: $colorPrimary;
+				border-radius:100px;
+				color:#FFF;
+			}
+
+			.icon+.name {
+				position: relative;
+				top:-20px;
+			}
+		}
+
+		> .detail {
+
+			$reviewArrowSize : 10px;
+			$boxColor:#FFF;
+			$borderColor:#ccc;
+			$borderSize:1px;
+			width:calc(100% - #{$userSize});
+			box-sizing:border-box;
+			padding-left:1.5em;
+			font-size:95%;
+			border-left:1px solid $borderColor;
+			position: relative;
+			
+			&:after,&:before {
+				content:"";
+				border:$reviewArrowSize solid $boxColor;
+				margin:$reviewArrowSize*-1 0;
+			}
+			&:before {
+				border-color:transparent $borderColor transparent transparent;
+				position: absolute;
+				left:$reviewArrowSize * -2 - $borderSize;
+				top:$reviewArrowSize+8px;
+			}
+			&:after {
+				border-color:transparent $boxColor transparent transparent;
+				position: absolute;
+				left:$reviewArrowSize * -2 + 1px;
+				top:$reviewArrowSize+8px;
+			}
+		}
+
+		.review-counts {
+			float:right;
+		}
+
+
 	}
 }
