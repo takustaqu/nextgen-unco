@@ -1,0 +1,39 @@
+{
+    "id": 43,
+    "name": "東京ビッグサイト東館男子トイレ",
+    "description": "ついでに風呂るとスッキリするぞ。2倍な。",
+    "image": [
+        {
+            "uri": "/images/sampletoilet.jpg",
+            "sperical": true
+        }
+    ],
+    "thumbnail": "/images/toilet/t43.jpg",
+    "lat": [
+        35.628041,
+        139.795129
+    ],
+    "ownerId": 19,
+    "using": false,
+    "price": 2100,
+    "reviewOverview": {
+        "rateAverage": 4.021,
+        "rateCount": 10,
+        "reviewCount": 10
+    },
+    "review": [
+        {
+            "comment": "お風呂はいいんですが、トイレは普通でした。このあたり期待していただけに残念",
+            "rate": 2,
+            "userid": 0
+        },
+        {
+            "comment": "ソフトクリームが美味しいのでまた来ます。",
+            "rate": 5,
+            "userid": 2
+        },
+        {
+            "rate": 5
+        }
+    ]
+}

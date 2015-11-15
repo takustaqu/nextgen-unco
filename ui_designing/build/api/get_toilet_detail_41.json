@@ -8,14 +8,14 @@
             "sperical": true
         }
     ],
-    "thumbnail": "/images/sampletoilet.jpg",
+    "thumbnail": "/images/toilet/t41.jpg",
     "lat": [
-        35.617108,
-        139.780641
+        35.617138,
+        139.780760
     ],
-    "ownerId": 1,
+    "ownerId": 13,
     "using": false,
-    "price": 900,
+    "price": 100,
     "reviewOverview": {
         "rateAverage": 4.821,
         "rateCount": 10,
@@ -28,7 +28,7 @@
             "userid": 0
         },
         {
-            "comment": "ハッカソん。",
+            "comment": "ハッカソン中に使いました。適度な温水ですが、ウォシュレットにもうちょっと水勢があれば☆5付けました。でもヘビロテ決定です。",
             "rate": 4.5,
             "userid": 2
         },
