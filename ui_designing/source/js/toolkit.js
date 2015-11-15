@@ -113,9 +113,9 @@ _tool = {
 		var ratedCount = _tool.createCount(obj.reviewOverview.rateCount);
 		var reviewCount = _tool.createCount(obj.reviewOverview.reviewCount);
 		
-		var prewrite = '<div class="status"><span class="icon"><i class="fa fa-ellipsis-h"></i></span><span class="distance">'+_tool.geoDistance(geolocation.result.coords.latitude , geolocation.result.coords.longitude,obj.lat[0],obj.lat[1],2)+'m</span></div><div class="detail"><div class="item"><div class="thumbnail"><img src="'+obj.thumbnail+'"></div><div class="price">¥900</div><div class="data"><div class="title">'+obj.name+'</div><div class="review-counts"><span class="star">'+star+'</span>'+ratedCount+' <i class="fa fa-comment"></i>'+reviewCount+'</div></div><div class="buttons"><a href="" class="ui-btn ui-btn-positive">Choose this one</a><a href="" class="ui-btn">Check details</a></div></div></div>'
+		var prewrite = '<div class="status"><span class="icon"><i class="fa fa-ellipsis-h"></i></span><span class="distance">'+obj.distance+'m</span></div><div class="detail"><div class="item"><div class="thumbnail"><img src="'+obj.thumbnail+'"></div><div class="price">¥900</div><div class="data"><div class="title">'+obj.name+'</div><div class="review-counts"><span class="star">'+star+'</span>'+ratedCount+' <i class="fa fa-comment"></i>'+reviewCount+'</div></div><div class="buttons"><a href="" class="ui-btn ui-btn-positive">Choose this one</a><a href="" class="ui-btn check-detail" data-toilet-id="'+obj.id+'" >Check details</a></div></div></div>'
 		var $result = $("<li />").addClass('waiting toiletid-'+obj.id).html(prewrite).attr('data-toilet-id',obj.id);
-			$result.children("a").on({
+			$result.find("a.check-detail").on({
 				"click":function(){
 					_tool.callToiletDetail($(this).attr("data-toilet-id"));
 					return false;
@@ -141,10 +141,16 @@ _tool = {
 			}else{
 				$list.append(_tool.createToiletCell(toilets[i]));	
 			}
-			
 		}
 	},
 	createToiletDetail : function(obj){
+
+		if(!!window.localStorage.getItem("airwnc") && !JSON.parse(window.localStorage.getItem("airwnc")).length){
+			var cache = JSON.parse(window.localStorage.getItem("airwnc"));
+		}else{
+			var cache = {}
+		}
+
 		var price = !!obj.price ? '<li><strong>Price</strong><span>&yen;'+_tool.separateComma(parseInt(obj.price))+'</span></li>' : "";
 		var priceTag = !!obj.price ? '<div class="price">&yen;'+_tool.separateComma(parseInt(obj.price))+'</div>' : "";
 		var star = _tool.createStar(obj.reviewOverview.rateAverage);
@@ -171,14 +177,25 @@ _tool = {
 				return result;
 			})(obj.review);
 
+		var additional = '<div class="panel pending" id="offer-send-console"><a href="#" class="ui-btn ui-btn-positive send-offer ui-btn-block">SEND USE-OFFER</a><a href="#" class="ui-btn ui-btn-accept send-im-go ui-btn-block">GO TO TOILET</a></div>'
+		console.log(cache ,cache["id"+parseInt(obj.id)]);
+		if(!!cache["id"+parseInt(obj.id)]){
+			additional = '<div class="panel '+cache["id"+parseInt(obj.id)]+'" id="offer-send-console"><a href="#" class="ui-btn ui-btn-positive send-offer ui-btn-block">SEND USE-OFFER</a><a href="#" class="ui-btn ui-btn-accept send-im-go ui-btn-block">GO TO TOILET</a></div>'
+			console.log(additional)
+		}
 
 		var inside = '<div class="column">'+
 						'<div class="col-full"><div class="panel"><header class="toilet"><h2>'+
 						obj.name+
 						'</h2><img src="'+obj.thumbnail+'" alt="" class="thumbnail"><div class="bg"><img src="#" alt="" style="background-image:url('+obj.thumbnail+')"></div>' +
 						vr + priceTag + '</header><p class="main-descripion">'+obj.description+'</p><ul class="toilet-detail"><li><strong>Owner</strong><div>Yabu Kiyohide</div></li><li><strong>Location</strong><div>'+gmap+'</div></li><li><strong>Status</strong><span>Using</span></li>'+price+'</ul></div>'+
-						'<div class="panel" id="offer-send-console"><a href="#" class="ui-btn ui-btn-positive ui-btn-block">SEND USE-OFFER</a><a href="#" class="ui-btn ui-btn-accept ui-btn-block">GO TO TOILET</a></div>'+
-						reviews+'</div></div>'
+						additional+reviews+'</div></div>';
+
+		console.log(additional,reviews)
+
+		
+
+		
 		var $result = $("<section />").html(inside);
 
 		$(".sections section").empty().append($result);
@@ -204,7 +221,18 @@ _tool = {
 			    dataType: "JSON",
 			    cache: false,
 			    success: function(data, textStatus){
-					
+
+			    	window.localStorage.setItem("airwnc",JSON.stringify([]));
+
+					$.each(data,function(){
+						this.distance = _tool.geoDistance(geolocation.result.coords.latitude , geolocation.result.coords.longitude,this.lat[0],this.lat[1],2);
+					})
+
+					data.sort(function(a,b){
+						if( a.distance < b.distance ) return -1;
+						if( a.distance > b.distance ) return 1;
+						return 0;
+					});
 					_tool.setToiletList(data,"#panicmode-toilets-list",true);
 			    },
 			    error: function(xhr, textStatus, errorThrown){
@@ -252,10 +280,34 @@ _tool = {
 		});
 	},
 	recieveMessage : function(targetId,status){
+
+		if(!!window.localStorage.getItem("airwnc") && !JSON.parse(window.localStorage.getItem("airwnc")).length){
+			var cache = JSON.parse(window.localStorage.getItem("airwnc"));
+		}else{
+			var cache = {}
+		}
+		
+		
 		$panicCell = $('#panicmode-toilets-list .toiletid-'+targetId);
 		console.log($panicCell);
 		$panicCell.removeClass("waiting ban allow").addClass(status).children(".detail").hide();
-		$panicCell.children(".detail").slideDown();
+		cache["id"+parseInt(targetId)] = status;
+		switch(status){
+			case "allow":
+				$panicCell.children(".detail").slideDown();
+				$panicCell.children(".status").find("i").removeClass().addClass("fa fa-thumbs-up");
+				break;
+			case "ban":
+				$panicCell.children(".detail").slideUp();
+				$panicCell.children(".status").find("i").removeClass().addClass("fa fa-ban");
+				break;
+			case "waiting":
+				$panicCell.children(".detail").slideUp();
+				$panicCell.children(".status").find("i").removeClass().addClass("fa fa-ellipsis-h");
+				break;
+		}
+
+		window.localStorage.setItem("airwnc",JSON.stringify(cache));
 	},
 }
 
