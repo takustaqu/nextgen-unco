@@ -57,8 +57,14 @@ router.get('/api/get_toilets.:format?', function(req, res, next) {
   var lat = req.query.lat;
   var lng = req.query.lng;
   var alert = req.query.alert;
+  var ownerId = req.query.ownerId;
 
-  db.Toilet.find({}, {
+  var query = {};
+  if (ownerId) {
+    query.ownerId = ownerId;
+  }
+
+  db.Toilet.find(query, {
     _id: 0,
     __v: 0,
     'image._id': 0,
