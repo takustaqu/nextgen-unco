@@ -33,6 +33,33 @@ navigator.geolocation.getCurrentPosition(
 var geolocation = new Geokit();
 
 _tool = {
+	geoDistance: function(lat1, lng1, lat2, lng2, precision) {
+		// 引数　precision は小数点以下の桁数（距離の精度）
+		var distance = 0;
+		if ((Math.abs(lat1 - lat2) < 0.00001) && (Math.abs(lng1 - lng2) < 0.00001)) {
+		distance = 0;
+		} else {
+		lat1 = lat1 * Math.PI / 180;
+		lng1 = lng1 * Math.PI / 180;
+		lat2 = lat2 * Math.PI / 180;
+		lng2 = lng2 * Math.PI / 180;
+
+		var A = 6378140;
+		var B = 6356755;
+		var F = (A - B) / A;
+
+		var P1 = Math.atan((B / A) * Math.tan(lat1));
+		var P2 = Math.atan((B / A) * Math.tan(lat2));
+
+		var X = Math.acos(Math.sin(P1) * Math.sin(P2) + Math.cos(P1) * Math.cos(P2) * Math.cos(lng1 - lng2));
+		var L = (F / 8) * ((Math.sin(X) - X) * Math.pow((Math.sin(P1) + Math.sin(P2)), 2) / Math.pow(Math.cos(X / 2), 2) - (Math.sin(X) - X) * Math.pow(Math.sin(P1) - Math.sin(P2), 2) / Math.pow(Math.sin(X), 2));
+
+		distance = A * (X + L);
+		var decimal_no = Math.pow(10, precision);
+		distance = Math.round(decimal_no * distance / 1) / decimal_no;   // kmに変換するときは(1000で割る)
+		}
+		return distance;
+	},
 	separateComma : function(num){return String(num).replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');},
 	createStar : function(rate){
 			if (typeof rate != "number") return ""; 
@@ -80,7 +107,25 @@ _tool = {
 
 		return $result;
 	},
-	setToiletList : function(toilets,selector){
+	createToiletPanicmodeCell:function(obj){
+		var price = !!obj.price ? '<div class="price">&yen;'+_tool.separateComma(parseInt(obj.price))+'</div>' : "";
+		var star = _tool.createStar(obj.reviewOverview.rateAverage);
+		var ratedCount = _tool.createCount(obj.reviewOverview.rateCount);
+		var reviewCount = _tool.createCount(obj.reviewOverview.reviewCount);
+		
+		var prewrite = '<div class="status"><span class="icon"><i class="fa fa-ellipsis-h"></i></span><span class="distance">'+_tool.geoDistance(geolocation.result.coords.latitude , geolocation.result.coords.longitude,obj.lat[0],obj.lat[1],2)+'m</span></div><div class="detail"><div class="item"><div class="thumbnail"><img src="'+obj.thumbnail+'"></div><div class="price">¥900</div><div class="data"><div class="title">'+obj.name+'</div><div class="review-counts"><span class="star">'+star+'</span>'+ratedCount+' <i class="fa fa-comment"></i>'+reviewCount+'</div></div><div class="buttons"><a href="" class="ui-btn ui-btn-positive">Choose this one</a><a href="" class="ui-btn">Check details</a></div></div></div>'
+		var $result = $("<li />").addClass('waiting toiletid-'+obj.id).html(prewrite).attr('data-toilet-id',obj.id);
+			$result.children("a").on({
+				"click":function(){
+					_tool.callToiletDetail($(this).attr("data-toilet-id"));
+					return false;
+				}
+			})
+
+		return $result;
+	},
+
+	setToiletList : function(toilets,selector,isPanicmode){
 		var $list = $(selector);
 		if(!$list.length) return false;
 
@@ -91,7 +136,12 @@ _tool = {
 		//配列からガシガシばーんと生成。
 		for(var i=0,il=toilets.length;i<il;i++){
 			//console.log(toilets[i])
-			$list.append(_tool.createToiletCell(toilets[i]));
+			if(!!isPanicmode){
+				$list.append(_tool.createToiletPanicmodeCell(toilets[i]));
+			}else{
+				$list.append(_tool.createToiletCell(toilets[i]));	
+			}
+			
 		}
 	},
 	createToiletDetail : function(obj){
@@ -148,6 +198,20 @@ _tool = {
 		_tool.refreshGeolocation(function(){
 			$("#panicmode-toilets").slideDown();
 			$("#nearby-toilets").slideUp();
+
+			$.ajax({
+			    url: "http://api.airwn.co/api/get_toilets",
+			    dataType: "JSON",
+			    cache: false,
+			    success: function(data, textStatus){
+					
+					_tool.setToiletList(data,"#panicmode-toilets-list",true);
+			    },
+			    error: function(xhr, textStatus, errorThrown){
+			    	console.log("failed",xhr, textStatus, errorThrown)
+			      return false;
+			    }
+			  });
 		});
 	},
 	refreshGeolocation : function(callback){
@@ -156,7 +220,43 @@ _tool = {
 			if(!!callback) callback.call(this);
 			$("#geolocating").fadeOut();
 		})
-	}
+	},
+	setWelcomeMessage : function(){
+		var client = new GStreetviewClient();
+		_tool.refreshGeolocation(function(){
+			$.ajax({
+			    url: "http://api.airwn.co/api/get_user_detail?id=1",
+			    dataType: "JSON",
+			    cache: false,
+			    success: function(data, textStatus){
+					//この関数に引き渡したらばーん
+
+					$("#welcome-message h1").text("Welcome,"+data.username+".");
+					
+					$("#open-userpage a").attr("href","/mypage.html?id="+data.id).html('<i class="fa fa-user"></i> '+data.username);
+						var slatlng = 
+						client.getNearestPanoramaLatLng(new GLatLng(geolocation.result.coords.latitude , geolocation.result.coords.longitude), setImage);
+						function setImage(latlng){
+						  $("#welcome-message .bg img").css("background-image",'url(https://maps.googleapis.com/maps/api/staticmap?center='+latlng.lat()+'%2C'+latlng.lng()+'&size=960x480&sensor=false&maptype=satellite&zoom=17&key=AIzaSyDoMyyhQn1cuBCpvNKOPFNtDrLmdEOpVjc)');
+						}
+
+					$("#welcome-message").removeClass("pending").addClass("ready");
+
+			    },
+			    error: function(xhr, textStatus, errorThrown){
+			    	console.log("failed",xhr, textStatus, errorThrown)
+			      return false;
+			    }
+			  });
+			
+		});
+	},
+	recieveMessage : function(targetId,status){
+		$panicCell = $('#panicmode-toilets-list .toiletid-'+targetId);
+		console.log($panicCell);
+		$panicCell.removeClass("waiting ban allow").addClass(status).children(".detail").hide();
+		$panicCell.children(".detail").slideDown();
+	},
 }
 
 

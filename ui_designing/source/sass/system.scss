@@ -493,6 +493,10 @@ p.description {
 			background-color: #ccc;
 		}
 
+		&.waiting {
+			background-color:#A5D0D7;
+		}
+
 		&.allow{
 		 	background-color: green;
 		 	.detail {
@@ -516,6 +520,7 @@ p.description {
 	.detail {
 		background-color: #005800;
 		color:#FFF;
+		display:none;
 		
 		&:after {
 			content:"";
@@ -581,6 +586,24 @@ p.description {
 	
 	text-shadow:0 0 8px #000;
 	
+	transition: height .5s cubic-bezier(0.55, -1.15, 0.37, 1.89) 0.5s;
+
+	
+	.panic-mode & {
+		height:200px;
+		h1 {
+			opacity:0;
+		}
+
+		h2 {
+			opacity:1!important;
+		}
+
+		.header-info{
+			opacity:0;
+		}
+	}
+
 	> * {
 		opacity:0;
 		transition:opacity 0.2s ease-in-out 0s;
@@ -589,6 +612,10 @@ p.description {
 	&.ready {
 		> * {
 			opacity:1;
+		}
+
+		> h2 {
+			opacity:0;
 		}
 	}
 	
@@ -612,14 +639,14 @@ p.description {
 			filter: blur(4px);
 		}
 	}
-	.header-info , h1 {
+	.header-info , h1 , h2{
 		position: absolute;
 		left:0;width:100%;
 		z-index:10;
 		text-align:center;
 		font-weight:100;
 	}
-	h1 {
+	h1 , h2 {
 		top:48%;
 		font-size:4.2rem;
 		line-height:1em;
