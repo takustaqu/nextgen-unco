@@ -200,7 +200,7 @@ _tool = {
 			$("#nearby-toilets").slideUp();
 
 			$.ajax({
-			    url: "http://api.airwn.co/api/get_toilets",
+			    url: "http://api.airwn.co/api/get_toilets?alert=1",
 			    dataType: "JSON",
 			    cache: false,
 			    success: function(data, textStatus){
