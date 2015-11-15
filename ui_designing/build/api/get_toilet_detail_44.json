@@ -1,0 +1,39 @@
+{
+    "id": 44,
+    "name": "ガンダム",
+    "description": "こいつ、動くぞ！！！！！！！！！",
+    "image": [
+        {
+            "uri": "/images/sampletoilet.jpg",
+            "sperical": true
+        }
+    ],
+    "thumbnail": "/images/toilet/t44.jpg",
+    "lat": [
+        35.624415,
+        139.775516
+    ],
+    "ownerId": 15,
+    "using": false,
+    "price": 2100,
+    "reviewOverview": {
+        "rateAverage": 4.021,
+        "rateCount": 10,
+        "reviewCount": 10
+    },
+    "review": [
+        {
+            "comment": "確かに動いたんですが、トイレじゃないので☆１",
+            "rate": 1,
+            "userid": 0
+        },
+        {
+            "comment": "そもそも排泄に支障のあるロボットで任務させてたという事実にビックリ。富野的なアレ。",
+            "rate": 2,
+            "userid": 2
+        },
+        {
+            "rate": 5
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "id": 42,
+    "name": "大江戸温泉物語",
+    "description": "ついでに風呂るとスッキリするぞ。2倍な。",
+    "image": [
+        {
+            "uri": "/images/sampletoilet.jpg",
+            "sperical": true
+        }
+    ],
+    "thumbnail": "/images/toilet/t42.jpg",
+    "lat": [
+        35.615812,
+        139.777938
+    ],
+    "ownerId": 11,
+    "using": false,
+    "price": 2100,
+    "reviewOverview": {
+        "rateAverage": 4.021,
+        "rateCount": 10,
+        "reviewCount": 10
+    },
+    "review": [
+        {
+            "comment": "お風呂はいいんですが、トイレは普通でした。このあたり期待していただけに残念",
+            "rate": 2,
+            "userid": 0
+        },
+        {
+            "comment": "ソフトクリームが美味しいのでまた来ます。",
+            "rate": 5,
+            "userid": 2
+        },
+        {
+            "rate": 5
+        }
+    ]
+}
