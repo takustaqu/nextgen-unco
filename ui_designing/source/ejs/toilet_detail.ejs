@@ -21,13 +21,16 @@ window.onload = function(){
 	success: function(data, textStatus){
 		//この関数に引き渡したらばーん
 		_tool.createToiletDetail(data);
+		$("a.send-offer").on({"click":function(){
+		  	alert("Now sending offer. please wait while responding.");
+		  	return false;
+		  }})
 	},
 	error: function(xhr, textStatus, errorThrown){
 		console.log("failed",xhr, textStatus, errorThrown)
 	  return false;
 	}
   });
-
 }
 </script>
 
