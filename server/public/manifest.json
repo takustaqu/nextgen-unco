@@ -1,8 +1,8 @@
 
 {
-  "name": "Toilet",
-  "short_name": "Toilet",
-  "start_url": "./panorama.html",
+  "name": "airwnc",
+  "short_name": "airwnc",
+  "start_url": "./",
   "display": "standalone",
   "icons": [{
     "src": "icon/mipmap-mdpi/ic_launcher.png",
