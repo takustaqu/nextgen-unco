@@ -42,6 +42,13 @@
 </footer>
 <script src="/js/jquery.js"></script>
 <script src="/js/toolkit.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect();
+  socket.on('toiletResponse',function(toiletInfo) {console.log(toiletInfo)
+    recieveMessage(toiletInfo.id, toiletInfo.ok ? 'allow' : 'ban');
+  });
+</script>
 
 
 </body>
