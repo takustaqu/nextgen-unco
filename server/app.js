@@ -95,17 +95,36 @@ router.get('/api/get_toilets.:format?', function(req, res, next) {
       };
 
       delete toilet.review;
-    })
+    });
 
+    // 結果のIDのうち1つを選んでTwilioに発信する
+    if (alert == '1') {
+      var callerSessionId = req.session.id;
+      if (toilets.length > 0) {
+        executeCall(callerSessionId, toilets[0].id, function(err, result) {
+          console.log(err, result);
+        });
+      }
+
+      // 2件以上結果があるときは、自動応答する
+      if (toilets.length > 1) {
+        for (var i = 1; i < toilets.length; ++i) {
+          (function(toiletId, i) {
+            setTimeout(function() {
+
+              // トイレ許可・拒否の返答
+              io.to(callerSessionId).emit('toiletResponse', {
+                ok: Math.random() > 0.7,
+                id: toiletId
+              });
+
+            }, Math.random() * 3000 + 1000 * i);
+          })(toilets[i].id, i);
+        }
+      }
+    }
     res.json(toilets);
   }, next);
-
-  // TODO
-  if (alert == '1') {
-    executeCall(req.session.id, '8', function(err, result) {
-      console.log(err, result);
-    });
-  }
 
 });
 
@@ -117,7 +136,6 @@ router.get('/api/get_toilet_detail.:format?', function(req, res, next) {
     return next(new Error('bad request'));
   }
 
-  // TODO
   db.Toilet.findOne({
     id: id
   }, {
@@ -215,23 +233,6 @@ router.get('/api/request_toilet_use.:format?', function(req, res, next) {
 
   // TODO 連絡
 
-});
-
-// router.get('/test', function(req, res) {
-//   res.send('ok');
-// });
-
-// ユーザーに電話をかける
-router.get('/call', function(req, res, next) {
-
-  // 電話をかける
-  executeCall(req.session.id, '8', function(err, result) {
-    if (err) {
-      next(err);
-    } else {
-      res.send(result);
-    }
-  });
 });
 
 router.get('/api/twilio/:callerSessionId/:toiletId', function(req, res) {
