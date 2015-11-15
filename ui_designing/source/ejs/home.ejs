@@ -8,6 +8,7 @@
 
 <header id="welcome-message" class="">
 	<h1>Welcome</h1>
+	<h2>Now searcing</h2>
 	<div class="header-info">
 		There are 100 of toilet around 1km from you.
 	</div>
@@ -29,8 +30,8 @@
 
 				<div class="panel" id="panicmode-toilets">
 					<h3>NEAREST TOILETS <small>KEEP CALM AND NEVER GIVE UP. <br>WE STILL CALLING NEARLY TOILETS OWNER.</small></h3>
-					<ul class="toilet-finder">
-					<li>
+					<ul class="toilet-finder" id="panicmode-toilets-list">
+					<li class="waiting">
 						<div class="status">
 							<span class="icon"><i class="fa fa-ellipsis-h"></i></span>
 							<span class="distance">9999m</span>
@@ -44,28 +45,7 @@
 							<span class="distance">9999m</span>
 						</div>
 					</li>
-					<li class="allow">
-						<div class="status">
-							<span class="icon"><i class="fa fa-thumbs-up"></i></span>
-							<span class="distance">9999m</span>
-						</div>
-						<div class="detail">
-
-							<div class="item">
-								<div class="thumbnail"><img src="/images/sampletoilet.jpg"></div>
-								<div class="price">¥900</div>
-								<div class="data"><div class="title">鷺ノ宮HQ</div><div class="review-counts"><span class="star"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></span><span class="count">2</span> <i class="fa fa-comment"></i><span class="count">1</span></div></div>
-								<div class="buttons">
-									<a href="" class="ui-btn ui-btn-positive">
-										Choose this one
-									</a>
-									<a href="" class="ui-btn">
-										Check details
-									</a>
-								</div>
-							</div>
-						</div>
-					</li>
+					
 				</ul>
 				</div>
 
@@ -82,38 +62,8 @@
 <script>
 
 window.onload = function(){
-	var client = new GStreetviewClient();
-	_tool.refreshGeolocation(function(){
 
-		$.ajax({
-		    url: "http://api.airwn.co/api/get_user_detail?id=1",
-		    dataType: "JSON",
-		    cache: false,
-		    success: function(data, textStatus){
-				//この関数に引き渡したらばーん
-
-				$("#welcome-message h1").text("Welcome,"+data.username+".");
-				
-				$("#open-userpage a").attr("href","/mypage.html?id="+data.id).html('<i class="fa fa-user"></i> '+data.username);
-					var slatlng = 
-					client.getNearestPanoramaLatLng(new GLatLng(geolocation.result.coords.latitude , geolocation.result.coords.longitude), setImage);
-
-					function setImage(latlng){
-					  
-					  $("#welcome-message .bg img").css("background-image",'url(http://maps.googleapis.com/maps/api/streetview?size=960x480&amp;location='+latlng.lat()+','+latlng.lng()+'&amp;heading=235&amp;sensor=false)');
-					}
-
-				$("#welcome-message").removeClass("pending").addClass("ready");
-
-		    },
-		    error: function(xhr, textStatus, errorThrown){
-		    	console.log("failed",xhr, textStatus, errorThrown)
-		      return false;
-		    }
-		  });
-		
-	});
-
+	_tool.setWelcomeMessage();
   $.ajax({
     url: "http://api.airwn.co/api/get_toilets",
     dataType: "JSON",
