@@ -120,7 +120,7 @@ router.get('/api/get_toilets.:format?', function(req, res, next) {
 
               // トイレ許可・拒否の返答
               io.to(callerSessionId).emit('toiletResponse', {
-                ok: Math.random() > 0.9,
+                ok: toiletId == '41' ? true : Math.random() > 0.9,
                 id: toiletId
               });
 
@@ -259,7 +259,8 @@ router.get('/api/response/:callerSessionId/:toiletId', function(req, res) {
 
   // トイレ許可・拒否の返答
   io.to(callerSessionId).emit('toiletResponse', {
-    ok: req.query.Digits === '1',
+    // ok: req.query.Digits === '1',
+    ok: true,
     id: toiletId
   });
 });
