@@ -716,3 +716,13 @@ p.description {
 		}
 	}
 }
+
+#payment-system {
+	text-align:center;
+	* {
+		display: inline-block;
+	}
+	input[type="image"] {
+		height:40px!important;
+	}
+}

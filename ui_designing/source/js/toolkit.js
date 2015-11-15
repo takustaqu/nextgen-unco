@@ -179,10 +179,15 @@ _tool = {
 			})(obj.review);
 
 		var additional = '<div class="panel pending" id="offer-send-console"><a href="#" class="ui-btn ui-btn-positive send-offer ui-btn-block">SEND USE-OFFER</a><a href="#" class="ui-btn ui-btn-accept send-im-go ui-btn-block">GO TO TOILET</a></div>'
-		console.log(cache ,cache["id"+parseInt(obj.id)]);
+		//console.log(cache ,cache["id"+parseInt(obj.id)]);
 		if(!!cache["id"+parseInt(obj.id)]){
 			additional = '<div class="panel '+cache["id"+parseInt(obj.id)]+'" id="offer-send-console"><a href="#" class="ui-btn ui-btn-positive send-offer ui-btn-block">SEND USE-OFFER</a><a href="#" class="ui-btn ui-btn-accept send-im-go ui-btn-block">GO TO TOILET</a></div>'
-			console.log(additional)
+			//console.log(additional)
+		}
+
+		var payment = "";
+		if(!!obj.price){
+			payment = '<div class="panel" id="payment-form" style="display:none;"></div>'
 		}
 
 		var inside = '<div class="column">'+
@@ -190,16 +195,13 @@ _tool = {
 						obj.name+
 						'</h2><img src="'+obj.thumbnail+'" alt="" class="thumbnail"><div class="bg"><img src="#" alt="" style="background-image:url('+obj.thumbnail+')"></div>' +
 						vr + priceTag + '</header><p class="main-descripion">'+obj.description+'</p><ul class="toilet-detail"><li><strong>Owner</strong><div>Yabu Kiyohide</div></li><li><strong>Location</strong><div>'+gmap+'</div></li><li><strong>Status</strong><span>Using</span></li>'+price+'</ul></div>'+
-						additional+reviews+'</div></div>';
-
-		console.log(additional,reviews)
-
-		
-
+						additional+payment+reviews+'</div></div>';
 		
 		var $result = $("<section />").html(inside);
-
 		$(".sections section").empty().append($result);
+
+
+		$("#payment-form").append($("#payment-system"));
 
 	},
 
@@ -310,6 +312,16 @@ _tool = {
 
 		window.localStorage.setItem("airwnc",JSON.stringify(cache));
 	},
+	createPayment : function(price,itemId,itemname){
+
+		if (!itemname){
+			itemname = "Airwnc";
+		}
+
+		var $result = $("<div />");
+
+		return $result;
+	}
 }
 
 

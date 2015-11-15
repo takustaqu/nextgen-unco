@@ -43,7 +43,13 @@ window.onload = function(){
 		$("a.send-offer").on({"click":function(){
 		  	alert("Now sending offer. please wait while responding.");
 		  	return false;
-		  }})
+		  }});
+
+		$("a.send-im-go").on({"click":function(){
+		  	$("#payment-form").slideDown();
+		  	return false;
+		 }});
+		
 	},
 	error: function(xhr, textStatus, errorThrown){
 		console.log("failed",xhr, textStatus, errorThrown)
@@ -51,7 +57,30 @@ window.onload = function(){
 	}
   });
 }
+ function callback(data) {
+    console.log(data);
+  }
 </script>
+
+<div id="payment-system">
+	 <!-- PayPalボタンここから -->
+  <form name="_xclick" action="https://www.paypal.com/jp/cgi-bin/webscr" method="post">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="ewi.trombone@gmail.com">
+    <input type="hidden" name="currency_code" value="JPY">
+    <input type="hidden" name="item_name" value="Toilet">
+    <!-- 値段ここ -->
+    <input type="hidden" name="amount" value="2100">
+    <input type="image" src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_secured_by_pp_2line.png" border="0" name="submit" alt="PayPalを使用してお支払いを - 迅速、無料、安全です">
+  </form>
+  <!-- PayPalボタンここまで -->
+​
+  <!-- 楽天ボタンここから -->
+  <!-- 商品名 = data-item-name -->
+  <!-- 値段 = data-item-unit-price-1 -->
+  <script src="https://lite.checkout.rakuten.co.jp/s/js/checkout-lite-v1.js" data-key="sandbox_public_ad89781aee2ff9e346324634c2e57f1cbc8b40c5e8da59d9b318ff70fd1c6ce60133c213ba6bb489b146b3f800ac375b" class="checkout-lite-button" data-item-id-1="itemId-001" data-item-name-1="ID[00001] トイレレンタル" data-item-unit-price-1="2100" data-item-quantity-1="1" data-callback="callback">
+  </script>
+</div>
 
 <!-- end contents -->
 
