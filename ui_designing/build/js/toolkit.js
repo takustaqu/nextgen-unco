@@ -218,7 +218,7 @@ _tool = {
 			$("#nearby-toilets").slideUp();
 
 			$.ajax({
-			    url: "http://api.airwn.co/api/get_toilets?alert=1",
+			    url: "http://airwn.co/api/get_toilets?alert=1",
 			    dataType: "JSON",
 			    cache: false,
 			    success: function(data, textStatus){
@@ -254,7 +254,7 @@ _tool = {
 		var client = new GStreetviewClient();
 		_tool.refreshGeolocation(function(){
 			$.ajax({
-			    url: "http://api.airwn.co/api/get_user_detail?id=1",
+			    url: "http://airwn.co/api/get_user_detail?id=1",
 			    dataType: "JSON",
 			    cache: false,
 			    success: function(data, textStatus){

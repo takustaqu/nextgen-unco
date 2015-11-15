@@ -245,7 +245,7 @@ router.get('/api/twilio/:callerSessionId/:toiletId', function(req, res) {
   var callerSessionId = req.params.callerSessionId;
   var toiletId = req.params.toiletId;
   res.set('Content-Type', 'text/xml');
-  res.send('<?xml version="1.0" encoding="UTF-8"?>\n<Response>\n<Gather action="http://api.airwn.co/api/response/' + callerSessionId + '/' + toiletId + '" method="GET" timeout="10" numDigits="1">\n<Say voice="alice" language="ja-jp">緊急です。近くでトイレを貸して欲しがっている人がいます。貸してあげても良い場合は、1を押してください。</Say>\n</Gather>\n<Say voice="alice" language="ja-jp">タイムアウトしました。</Say>\n</Response>');
+  res.send('<?xml version="1.0" encoding="UTF-8"?>\n<Response>\n<Gather action="http://airwn.co/api/response/' + callerSessionId + '/' + toiletId + '" method="GET" timeout="10" numDigits="1">\n<Say voice="alice" language="ja-jp">緊急です。近くでトイレを貸して欲しがっている人がいます。貸してあげても良い場合は、1を押してください。</Say>\n</Gather>\n<Say voice="alice" language="ja-jp">タイムアウトしました。</Say>\n</Response>');
 });
 
 // ユーザーが応答したら呼ばれる
@@ -279,7 +279,7 @@ function executeCall(callerSessionId, toiletId, callback) {
   client.calls.create({
     to: "+818020314368",
     from: credentials.twilio.from,
-    url: 'http://api.airwn.co/api/twilio/' + callerSessionId + '/' + toiletId,
+    url: 'http://airwn.co/api/twilio/' + callerSessionId + '/' + toiletId,
     method: "GET",
     fallbackMethod: "GET",
     statusCallbackMethod: "GET",
