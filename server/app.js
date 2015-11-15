@@ -114,7 +114,7 @@ router.get('/api/get_toilets.:format?', function(req, res, next) {
 
               // トイレ許可・拒否の返答
               io.to(callerSessionId).emit('toiletResponse', {
-                ok: Math.random() > 0.7,
+                ok: Math.random() > 0.9,
                 id: toiletId
               });
 
